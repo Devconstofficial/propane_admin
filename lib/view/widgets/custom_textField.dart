@@ -70,7 +70,7 @@ class _MyCustomTextFieldState extends State<MyCustomTextField> {
       obscureText: widget.isObscureText!,
       onChanged: widget.onChanged,
       // maxLines: widget.isObscureText! ? 1 : widget.maxLines,
-      style: AppStyles.workSansTextStyle().copyWith(color: widget.textColor,fontSize: 12),
+      style: AppStyles.workSansTextStyle().copyWith(color: widget.textColor,fontSize: 14),
       decoration: InputDecoration(
         contentPadding: widget.contentPadding,
         labelText: widget.labelText,
@@ -84,7 +84,7 @@ class _MyCustomTextFieldState extends State<MyCustomTextField> {
         fillColor: widget.fillColor,
         filled: true,
         hintText: widget.hintText,
-        hintStyle: AppStyles.workSansTextStyle().copyWith(color: widget.textColor,fontSize: 12),
+        hintStyle: AppStyles.workSansTextStyle().copyWith(color: widget.textColor,fontSize: 14),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppStyles.customBorderAll,
           borderSide: BorderSide(

@@ -69,6 +69,7 @@ class AppStyles {
   EdgeInsets get bottomSheetPadding => EdgeInsets.symmetric(vertical: 30,horizontal: 36.w);
   EdgeInsets get contentPadding => EdgeInsets.symmetric(horizontal: 20.w,vertical: 18);
   EdgeInsets get loginContainerPadding => EdgeInsets.symmetric(horizontal: 70.w,vertical: 40);
+  EdgeInsets get chatPadding => EdgeInsets.symmetric(vertical: 12,horizontal: 24.w);
 
 
   static BoxDecoration get boxDecor => BoxDecoration(

@@ -1,5 +1,4 @@
 import 'package:propane_admin/utils/app_strings.dart';
-import 'package:propane_admin/view/screens/admin_screen/controller/admin_controller.dart';
 import 'package:propane_admin/view/widgets/custom_button.dart';
 import 'package:propane_admin/view/widgets/custom_textField.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ import '../../../utils/app_styles.dart';
 import '../../../utils/common_code.dart';
 import '../../side_menu/side_menu.dart';
 import '../../widgets/notifiction_panel.dart';
+import 'controller/admin_controller.dart';
 
 class AddAdminScreen extends GetView<AdminController> {
   const AddAdminScreen({super.key});

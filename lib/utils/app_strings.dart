@@ -15,8 +15,12 @@ String kCreateAdmin = 'Create Admin';
 String kCreateDriver = 'Create Driver';
 String kCreateNewUser = 'Create New User';
 String kCreateNewDriver = 'Create New Driver';
+String kActiveJobDetails = 'Active Job Details';
 String kPlatformFee = 'Platform Usage Fee';
 String kDeliveryFee = 'Set Delivery Fee';
+String kUrgentPrice = 'Urgent Price';
+String kUltraUrgent = 'Ultra Urgent';
+String kBookingPrice = 'Booking Price';
 String kRevenue = 'Revenue This Month';
 String kBeverageManagement = 'Beverage Management';
 String kBookingThisWeek = 'Bookings This Week';
@@ -29,6 +33,7 @@ String kWeeklyReported = 'Weekly Reported Crimes';
 String kUserManagement = 'User Management';
 String kAdminManagement = 'Admin Management';
 String kDriverManagement = 'Driver Management';
+String kJobManagement = 'Job Management';
 String kSensorDetails = 'Sensor Details';
 String kSubscriptionManagement = 'Subscription Management';
 String kFilterBy = 'Filter By';
@@ -58,45 +63,36 @@ String kPhoneNo = 'Phone No';
 String kRole = 'Role';
 String kOccupation = 'Occupation';
 String kVehicleType = 'Vehicle Type';
+String kPickupLocation = 'Pickup Location';
+String kDeliveryLocation = 'Delivery Location';
+String kDeliveryCharges = 'Delivery Charges';
+String kPlatformCommission = 'Platform Commission';
+String kSchPickTime = 'Scheduled Pickup Time';
 String kVehicleLiPlate = 'Vehicle License Pate';
 String kEmpStatus = 'Employment Status';
 String kAge = 'Age';
 String kBeverages = 'Beverages';
 String kAddBeverage = 'Add Beverage';
-String kTermsText = '1. Clause 1\n\n'
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra condimentum eget purus in. Consectetur eget id morbi amet amet, in. Ipsum viverra pretium tellus neque. Ullamcorper suspendisse aenean leo pharetra in sit semper et. Amet quam placerat sem.\n'
-    '\n'
-    '2. Clause 2\n\n'
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra condimentum eget purus in. Consectetur eget id morbi amet amet, in. Ipsum viverra pretium tellus neque. Ullamcorper suspendisse aenean leo pharetra in sit semper et. Amet quam placerat sem'
-
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra condimentum eget purus in. Consectetur eget id morbi amet amet, in. Ipsum viverra pretium tellus neque. Ullamcorper suspendisse aenean leo pharetra in sit semper et. Amet quam placerat sem.'
-    '\n'
-    '\n'
-    '3. Clause 3\n\n'
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra condimentum eget purus in. Consectetur eget id morbi amet amet, in. Ipsum viverra pretium tellus neque. Ullamcorper suspendisse aenean leo pharetra in sit semper et. Amet quam placerat sem'
-
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra condimentum eget purus in. Consectetur eget id morbi amet amet, in. Ipsum viverra pretium tellus neque. Ullamcorper suspendisse aenean leo pharetra in sit semper et. Amet quam placerat sem.';
-String kTheftDetail = 'Reported theft at Central Park, London. A black backpack stolen near the fountain. Suspect description: male, mid-30s, wearing a grey hoodie. Incident occurred at 3:00 PM';
+String kCustomerRequests = 'Customer Requests';
+String kActiveChats = 'Active Chats';
+String kNewMessage = 'New Message';
 String kDeleteDetail = 'Are you sure you want to delete this item? This action is irreversible and will permanently remove the selected record from the system.';
 
 
 // Routs
 const String kLoginScreenRoute = "/";
 const String kVerifyOtpScreenRoute = "/verify-otp-scree-route";
+const String kDashboardScreenRoute = "/dashboard-screen-route";
 const String kUserScreenRoute = "/user-screen-route";
 const String kDriverScreenRoute = "/driver-screen-route";
+const String kJobManagementScreenRoute = "/job-screen-route";
+const String kJobDetailScreenRoute = "/job-detail-screen-route";
 const String kAdminScreenRoute = "/admin-screen-route";
 const String kAddAdminScreenRoute = "/add-admin-screen-route";
 const String kCreateUserScreenRoute = "/create-user-screen-route";
 const String kCreateDriverScreenRoute = "/create-driver-screen-route";
 const String kBeverageScreenRoute = "/beverage-screen-route";
-const String kAddCrimeDashboardRoute = "/add-crime-dashboard-route";
-const String kAddCrimeScreenRoute = "/add-crime-screen-route";
-const String kSubscriptionScreenRoute = "/subscription-screen-route";
-const String kNotificationScreenRoute = "/notification-screen-route";
-const String kCommentScreenRoute = "/comment-screen-route";
-const String kBlogScreenRoute = "/blog-screen-route";
-const String kDashboardScreenRoute = "/dashboard-screen-route";
-const String kTermsScreenRoute = "/terms-screen-route";
+const String kSupportScreenRoute = "/support-screen-route";
+const String kChatScreenRoute = "/support-screen-route";
 
 

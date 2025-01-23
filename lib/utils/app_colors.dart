@@ -3,6 +3,7 @@ const Color kPrimaryColor = Color(0xFFFF6347);
 const Color kTableBorderColor = Color(0xFFB9B9B9);
 const Color kActionsButtonColor = Color(0xFF979797);
 const Color kSecondaryColor = Color(0xFF88C3C6);
+const Color kPurpleColor = Color(0xFFBD00FF);
 const Color kBlueColor = Color(0xff87CEEB);
 const Color kBlueColor1 = Color(0xff00B2FF);
 const Color kFilterContainerColor = Color(0xffF9F9FB);
@@ -50,3 +51,5 @@ const Color ksuffix2Color = Color(0xFF808080);
 
 //
 const Color kBorderColor1 = Color(0xFFE6E6E6);
+const Color kBorderColor2 = Color(0xFF8B8D97);
+const Color kBorderColor3 = Color(0xFFF1F3F9);
