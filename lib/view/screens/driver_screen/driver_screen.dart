@@ -642,7 +642,6 @@ class DriverScreen extends GetView<DriverController> {
                                   SizedBox(
                                     width: width,
                                     child: DataTable(
-                                      columnSpacing: 0,
                                       headingRowHeight: 49,
                                       columns: [
                                         DataColumn(

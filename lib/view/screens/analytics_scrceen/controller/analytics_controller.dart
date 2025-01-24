@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../utils/app_colors.dart';
 
 
-class DashboardController extends GetxController {
+class AnalyticsController extends GetxController {
   RxList<BarChartGroupData> barChartData = <BarChartGroupData>[].obs;
   RxList<BarChartGroupData> barChartData1 = <BarChartGroupData>[].obs;
   RxList notifications = [].obs;
@@ -13,6 +13,11 @@ class DashboardController extends GetxController {
   var selectedRegion = 'All Regions'.obs;
   var selectedValue1 = 'Last 7 Days'.obs;
   var selectedTodayValue = 'Today'.obs;
+  var selectedLocation = ''.obs;
+  var isNotificationVisible = false.obs;
+  var progressPercentage = 70.0.obs;
+
+
 
   void updateValue(String value) {
     selectedValue.value = value;
@@ -24,6 +29,10 @@ class DashboardController extends GetxController {
 
   void updateValue1(String value) {
     selectedTodayValue.value = value;
+  }
+
+  void toggleNotificationVisibility() {
+    isNotificationVisible.value = !isNotificationVisible.value;
   }
 
 
@@ -114,7 +123,6 @@ class DashboardController extends GetxController {
     }).toList();
   }
 
-
   RxMap<String, double> dataMap = {
     '1-25': 10.0,
     '25-50': 45.0,
@@ -122,8 +130,13 @@ class DashboardController extends GetxController {
   }.obs;
 
   RxMap<String, double> dataMapRing = {
-    'Employed': 50.0,
-    'Un-Employed': 50.0,
+    'Employed': 55.0,
+    'Un-Employed': 45.0,
+  }.obs;
+
+  RxMap<String, double> dataMapProgressBar = {
+    '68% Order Completion': 55.0,
+    '32% Order Failed': 45.0,
   }.obs;
 
   List<Color> get colorList {
@@ -136,8 +149,15 @@ class DashboardController extends GetxController {
 
   List<Color> get colorListRing {
     return [
-      kPrimaryColor,
       kOrangeColor,
+      kBlueColor,
+    ];
+  }
+
+  List<Color> get colorListProgressBar {
+    return [
+      kOrangeColor,
+      kBlueColor,
     ];
   }
 

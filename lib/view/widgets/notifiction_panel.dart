@@ -19,7 +19,7 @@ class NotificationAndActivitySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: 200.w,
       decoration: const BoxDecoration(
         border: Border(left: BorderSide(color: kBackGroundColor, width: 2)),
       ),
@@ -65,27 +65,29 @@ class NotificationAndActivitySection extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 7),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                notification['title']!,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppStyles.workSansTextStyle().copyWith(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w400,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  notification['title']!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppStyles.workSansTextStyle().copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                notification['time']!,
-                                style: AppStyles.workSansTextStyle().copyWith(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: kBlackColor.withOpacity(0.6),
+                                Text(
+                                  notification['time']!,
+                                  style: AppStyles.workSansTextStyle().copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w400,
+                                    color: kBlackColor.withOpacity(0.6),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),

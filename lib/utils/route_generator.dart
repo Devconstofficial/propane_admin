@@ -7,11 +7,13 @@ import 'package:propane_admin/view/screens/support_screens/support_screen.dart';
 import 'package:propane_admin/view/screens/user_screen/user_screen.dart';
 import 'package:get/get.dart';
 import '../view/screens/admin_screen/add_admin_screen.dart';
+import '../view/screens/analytics_scrceen/anaytics_screen.dart';
 import '../view/screens/auth_screen/verify_otp.dart';
 import '../view/screens/dashboard/dashboard_screen.dart';
 import '../view/screens/driver_screen/create_driver_screen.dart';
 import '../view/screens/driver_screen/driver_screen.dart';
 import '../view/screens/job_management_screen/job_detail_screen.dart';
+import '../view/screens/revenue_screen/revenue_screen.dart';
 import '../view/screens/user_screen/create_user_screen.dart';
 import 'app_strings.dart';
 
@@ -31,6 +33,8 @@ class RouteGenerator {
       GetPage(name: kLoginScreenRoute, page: () => const LoginScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
       GetPage(name: kVerifyOtpScreenRoute, page: () => const VerifyOtpScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
       GetPage(name: kSupportScreenRoute, page: () => const CustomerSupportScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
+      GetPage(name: kRevenueScreenRoute, page: () => RevenueScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
+      GetPage(name: kAnalyticsScreenRoute, page: () => AnalyticsScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
     ];
   }
 }

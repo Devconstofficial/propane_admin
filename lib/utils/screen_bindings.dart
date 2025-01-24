@@ -1,6 +1,8 @@
 import 'package:propane_admin/view/screens/beverage_screen/controller/beverage_controller.dart';
 import 'package:get/get.dart';
+import 'package:propane_admin/view/screens/revenue_screen/controller/revenue_controller.dart';
 import '../view/screens/admin_screen/controller/admin_controller.dart';
+import '../view/screens/analytics_scrceen/controller/analytics_controller.dart';
 import '../view/screens/auth_screen/controller/auth_controller.dart';
 import '../view/screens/dashboard/controller/dashboard_controller.dart';
 import '../view/screens/driver_screen/controller/driver_controller.dart';
@@ -20,5 +22,7 @@ class ScreenBindings extends Bindings {
     Get.lazyPut(() => AuthController());
     Get.lazyPut(() => JobController());
     Get.lazyPut(() => SupportController());
+    Get.lazyPut(() => RevenueController());
+    Get.lazyPut(() => AnalyticsController());
   }
 }
