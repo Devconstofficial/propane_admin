@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_images.dart';
 
 class SupportController extends GetxController {
   var selectedTicketStatus = ''.obs;
@@ -47,6 +48,136 @@ class SupportController extends GetxController {
   void toggleNotificationVisibility() {
     isNotificationVisible.value = !isNotificationVisible.value;
   }
+
+  var chatList = [
+    {
+      "name": "John Doe",
+      "latestMessage": "Hi, I want to make enquiries about you",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "new",
+      "unreadCount": 2,
+      "time": "12:55 am",
+    },
+    {
+      "name": "Jane Smith",
+      "latestMessage": "Hi, I want to make enquiries about you",
+      "image": kImage3,
+      "status": "online",
+      "timeline": "new",
+      "unreadCount": 1,
+      "time": "11:40 pm",
+    },
+    {
+      "name": "Mark Johnson",
+      "latestMessage": "Let's catch up soon!",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "old",
+      "unreadCount": 0,
+      "time": "10:30 pm",
+    },
+    {
+      "name": "Emma Williams",
+      "latestMessage": "Looking forward to the event tomorrow.",
+      "image": kImage3,
+      "status": "away",
+      "timeline": "new",
+      "unreadCount": 3,
+      "time": "9:45 pm",
+    },
+    {
+      "name": "Olivia Brown",
+      "latestMessage": "Can you send me the details?",
+      "image": kImage3,
+      "status": "online",
+      "timeline": "new",
+      "unreadCount": 1,
+      "time": "8:15 pm",
+    },
+    {
+      "name": "Sophia Davis",
+      "latestMessage": "I have some questions about the project.",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "old",
+      "unreadCount": 0,
+      "time": "7:50 pm",
+    },
+    {
+      "name": "Liam Miller",
+      "latestMessage": "Can we reschedule our meeting?",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "new",
+      "unreadCount": 4,
+      "time": "6:30 pm",
+    },
+    {
+      "name": "Ava Wilson",
+      "latestMessage": "Happy to help with anything!",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "new",
+      "unreadCount": 0,
+      "time": "5:20 pm",
+    },
+    {
+      "name": "Lucas Taylor",
+      "latestMessage": "Let's chat soon about the new proposal.",
+      "image": kImage3,
+      "status": "online",
+      "timeline": "new",
+      "unreadCount": 2,
+      "time": "4:10 pm",
+    },
+    {
+      "name": "Mia Anderson",
+      "latestMessage": "I need some more information.",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "new",
+      "unreadCount": 3,
+      "time": "3:05 pm",
+    },
+    {
+      "name": "James Martinez",
+      "latestMessage": "Let's talk about the next steps.",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "old",
+      "unreadCount": 0,
+      "time": "2:50 pm",
+    },
+    {
+      "name": "Charlotte Rodriguez",
+      "latestMessage": "How about a quick call to discuss?",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "new",
+      "unreadCount": 1,
+      "time": "1:30 pm",
+    },
+    {
+      "name": "Amelia Lee",
+      "latestMessage": "I will send you the updated file.",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "new",
+      "unreadCount": 5,
+      "time": "12:10 pm",
+    },
+    {
+      "name": "Benjamin Harris",
+      "latestMessage": "Please confirm your availability.",
+      "image": kImage3,
+      "status": "offline",
+      "timeline": "old",
+      "unreadCount": 0,
+      "time": "11:00 am",
+    },
+  ].obs;
+
 
   final List<Map<String, dynamic>> allTickets = [
     {"id": "00001", "title": "Inquiry Title", "createdBy": "Alex Alex", "Last Activity": "1 hour ago","status": "Active", "statusBackColor": kBlueColor, "StatusColor": kBlueColor.withOpacity(0.2)},

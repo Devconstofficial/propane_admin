@@ -291,15 +291,18 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                         children: [
                                           Row(
                                             children: [
-                                              Expanded(
-                                                  child: Text(
-                                                    kAgeRange,
-                                                    style: AppStyles.interTextStyle()
-                                                        .copyWith(
-                                                        fontSize: 24.sp,
-                                                        fontWeight:
-                                                        FontWeight.w600),
-                                                  )),
+                                              Flexible(
+                                                child: Text(
+                                                  kAgeRange,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: AppStyles.interTextStyle()
+                                                      .copyWith(
+                                                      fontSize: 24.sp,
+                                                      fontWeight:
+                                                      FontWeight.w600),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                           Row(
@@ -416,15 +419,18 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Expanded(
-                                                    child: Text(
-                                                      "Occupations",
-                                                      style: AppStyles.interTextStyle()
-                                                          .copyWith(
-                                                          fontSize: 24.sp,
-                                                          fontWeight:
-                                                          FontWeight.w600),
-                                                    )),
+                                                Flexible(
+                                                  child: Text(
+                                                    "Occupations",
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: AppStyles.interTextStyle()
+                                                        .copyWith(
+                                                        fontSize: 24.sp,
+                                                        fontWeight:
+                                                        FontWeight.w600),
+                                                  ),
+                                                ),
                                                 Row(
                                                   children: [
                                                     Obx(() => Text(
@@ -631,15 +637,18 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                           children: [
                                             Row(
                                               children: [
-                                                Expanded(
-                                                    child: Text(
-                                                      kEmploymentStatus,
-                                                      style: AppStyles.interTextStyle()
-                                                          .copyWith(
-                                                          fontSize: 24.sp,
-                                                          fontWeight:
-                                                          FontWeight.w600),
-                                                    )),
+                                                Flexible(
+                                                  child: Text(
+                                                    kEmploymentStatus,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: AppStyles.interTextStyle()
+                                                        .copyWith(
+                                                        fontSize: 24.sp,
+                                                        fontWeight:
+                                                        FontWeight.w600),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                             Row(
@@ -753,15 +762,18 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                             padding: EdgeInsets.only(left:28.0.w),
                                             child: Row(
                                               children: [
-                                                Expanded(
-                                                    child: Text(
-                                                      "Average Time Between User Orders",
-                                                      style: AppStyles.interTextStyle()
-                                                          .copyWith(
-                                                          fontSize: 24.sp,
-                                                          fontWeight:
-                                                          FontWeight.w600),
-                                                    )),
+                                                Flexible(
+                                                     child: Text(
+                                                    "Average Time Between User Orders",
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: AppStyles.interTextStyle()
+                                                        .copyWith(
+                                                        fontSize: 24.sp,
+                                                        fontWeight:
+                                                        FontWeight.w600),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -930,18 +942,21 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(left:28.0.w),
+                                            padding: EdgeInsets.only(left:24.0.w),
                                             child: Row(
                                               children: [
-                                                Expanded(
-                                                    child: Text(
-                                                      kRevenueLocation,
-                                                      style: AppStyles.interTextStyle()
-                                                          .copyWith(
-                                                          fontSize: 24.sp,
-                                                          fontWeight:
-                                                          FontWeight.w600),
-                                                    )),
+                                                Flexible(
+                                                  child: Text(
+                                                    kRevenueLocation,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: AppStyles.interTextStyle()
+                                                        .copyWith(
+                                                        fontSize: 24.sp,
+                                                        fontWeight:
+                                                        FontWeight.w600),
+                                                  ),
+                                                ),
                                                 const Spacer(),
                                                 Row(
                                                   children: [
@@ -997,7 +1012,7 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(width: 30.w),
+                                                SizedBox(width: 20.w),
                                                 Row(
                                                   children: [
                                                     Obx(() => Text(
@@ -1074,22 +1089,22 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                                 child: SizedBox(
                                                   height: 280,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(right: 46.0.w,bottom: 8),
+                                                    padding: EdgeInsets.only(right: 36.0.w,bottom: 8),
                                                     child: fl.BarChart(
                                                       fl.BarChartData(
                                                         alignment: fl.BarChartAlignment
                                                             .spaceBetween,
                                                         maxY: 160,
-                                                        gridData: const fl.FlGridData(
+                                                        gridData: fl.FlGridData(
                                                             show: true,
-                                                            horizontalInterval: 22,
+                                                            horizontalInterval: 22.w,
                                                             drawHorizontalLine: false,
                                                             drawVerticalLine: false),
                                                         titlesData: fl.FlTitlesData(
                                                           leftTitles: fl.AxisTitles(
                                                             sideTitles: fl.SideTitles(
                                                               showTitles: true,
-                                                              reservedSize: 32,
+                                                              reservedSize: 52.w,
                                                               interval: 40,
                                                               getTitlesWidget:
                                                                   (value, meta) {
@@ -1146,8 +1161,8 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                                                     break;
                                                                 }
                                                                 return Padding(
-                                                                  padding: const EdgeInsets.only(top: 9.0),
-                                                                  child: label,
+                                                                  padding: EdgeInsets.only(top: 9.0.h),
+                                                                  child: Flexible(child: label),
                                                                 );
                                                               },
                                                             ),
@@ -1193,25 +1208,28 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                           children: [
                                             Row(
                                               children: [
-                                                Expanded(
-                                                    child: Text(
-                                                      "Completion Rate",
-                                                      style: AppStyles.interTextStyle()
-                                                          .copyWith(
-                                                          fontSize: 24.sp,
-                                                          fontWeight:
-                                                          FontWeight.w600),
-                                                    )),
+                                                Flexible(
+                                                     child: Text(
+                                                    "Completion Rate",
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: AppStyles.interTextStyle()
+                                                        .copyWith(
+                                                        fontSize: 24.sp,
+                                                        fontWeight:
+                                                        FontWeight.w600),
+                                                  ),
+                                                ),
                                               ],
                                             ),
-                                  SizedBox(height: 28.h),
-                                  SimpleCircularProgressBar(
-                                      progressStrokeWidth: 12.0,
-                                      backStrokeWidth: 12.0,
+                                            SizedBox(height: 28.h),
+                                            SimpleCircularProgressBar(
+                                      progressStrokeWidth: 12.0.w,
+                                      backStrokeWidth: 12.0.w,
                                       progressColors: const [kPrimaryColor],
                                       backColor: Color(0xffD9D9D9),
                                     valueNotifier: ValueNotifier(controller.progressPercentage.value),
-                                      size: 100,
+                                      size: 120.r,
                                       onGetText: (value) => Text(
                                         '${value.toInt()}%',
                                         style: TextStyle(
@@ -1243,16 +1261,18 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                                         ),
                                                       ),
                                                       const SizedBox(width: 7),
-                                                      Text(label,
-                                                          style: AppStyles
-                                                              .interTextStyle()
-                                                              .copyWith(
-                                                              fontSize: 14.sp,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400,
-                                                              color:
-                                                              kBlackColor1))
+                                                      Expanded(
+                                                        child: Text(label,
+                                                            style: AppStyles
+                                                                .interTextStyle()
+                                                                .copyWith(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                                color:
+                                                                kBlackColor1)),
+                                                      )
                                                     ],
                                                   );
                                                 },
@@ -1269,6 +1289,7 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                             height: 32.h,
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   kLocationBasedService,
@@ -1276,10 +1297,311 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
                                       fontSize: 24.sp,
                                       fontWeight: FontWeight.w600),
                                 ),
+                                CustomButton(text: "Add a new city", height: 38, onTap: (){
+
+                                },width: 184.w,fontSize: 16.sp,),
                               ]),
                           SizedBox(
                             height: 30.h,
                           ),
+                          Container(
+                            width: width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(14.r),
+                                topRight: Radius.circular(14.r),
+                              ),
+                              border: Border.all(
+                                  color: kTableBorderColor, width: 0.3),
+                            ),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: 49,
+                                  decoration: BoxDecoration(
+                                    color: kPrimaryColor,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(14.r),
+                                      topRight: Radius.circular(14.r),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: width,
+                                  child: DataTable(
+                                    headingRowHeight: 49,
+                                    columns: [
+                                      DataColumn(
+                                        label: Flexible(
+                                          child: Text(
+                                            "City Name",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style:
+                                            AppStyles.workSansTextStyle()
+                                                .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.sp,
+                                              color: kWhiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        label: Flexible(
+                                          child: Text(
+                                            "Total Users",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style:
+                                            AppStyles.workSansTextStyle()
+                                                .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.sp,
+                                              color: kWhiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        label: Flexible(
+                                          child: Text(
+                                            "Total Orders",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style:
+                                            AppStyles.workSansTextStyle()
+                                                .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.sp,
+                                              color: kWhiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        label: Flexible(
+                                          child: Text(
+                                            "Average time b/w order",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style:
+                                            AppStyles.workSansTextStyle()
+                                                .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.sp,
+                                              color: kWhiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        headingRowAlignment:
+                                        MainAxisAlignment.center,
+                                        label: Flexible(
+                                          child: Text(
+                                            "Revenue Generated",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style:
+                                            AppStyles.workSansTextStyle()
+                                                .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.sp,
+                                              color: kWhiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      DataColumn(
+                                        headingRowAlignment:
+                                        MainAxisAlignment.center,
+                                        label: Flexible(
+                                          child: Text(
+                                            "Actions",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style:
+                                            AppStyles.workSansTextStyle()
+                                                .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14.sp,
+                                              color: kWhiteColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                    rows: controller.currentPageLocations.map((location) {
+                                      int index = controller.allLocations.indexOf(location);
+                                      return _buildDataRow(
+                                        location['cityName']!,
+                                        location['totalUser']!,
+                                        location['totalOrder']!,
+                                        location['avgTime']!,
+                                        location['amount']!,
+                                        index,
+                                        location['isSwitchOn']!,
+                                            (value, index) {
+                                              controller.allLocations[index]['isSwitchOn'] = value;
+                                          controller.update();
+                                        },
+                                        context
+                                      );
+                                    }).toList(),
+                                    dataRowMaxHeight: 65,
+                                    columnSpacing: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 51.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: controller.isBackButtonDisabled
+                                    ? null
+                                    : controller.goToPreviousPage,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 12),
+                                  decoration: BoxDecoration(
+                                    color: controller.isBackButtonDisabled
+                                        ? kWhiteColor
+                                        : kPrimaryColor,
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: controller.isBackButtonDisabled
+                                          ? kCreamColor
+                                          : kPrimaryColor,
+                                    ),                                        ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.arrow_back_ios_new_outlined,
+                                          size: 12,
+                                          color:
+                                          controller.isBackButtonDisabled
+                                              ? kBlackColor
+                                              : kWhiteColor),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Text(
+                                        'Back',
+                                        style: AppStyles.interTextStyle()
+                                            .copyWith(
+                                          fontSize: 12,
+                                          color:
+                                          controller.isBackButtonDisabled
+                                              ? kBlackColor
+                                              : kWhiteColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              ...List.generate(
+                                controller.totalPages,
+                                    (index) {
+                                  bool isSelected = index + 1 ==
+                                      controller.currentLocationPage.value;
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        controller.changePage(index + 1),
+                                    child: Padding(
+                                      padding:
+                                      AppStyles().paginationBtnPadding,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8, horizontal: 12),
+                                        decoration: BoxDecoration(
+                                          color: isSelected
+                                              ? kPrimaryColor
+                                              : kWhiteColor,
+                                          borderRadius:
+                                          BorderRadius.circular(4),
+                                          border: Border.all(
+                                            color: isSelected
+                                                ? kPrimaryColor
+                                                : kCreamColor,
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            (index + 1).toString(),
+                                            style: AppStyles.interTextStyle()
+                                                .copyWith(
+                                              fontSize: 12,
+                                              color: isSelected
+                                                  ? kWhiteColor
+                                                  : kBlackColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              GestureDetector(
+                                onTap: controller.isNextButtonDisabled
+                                    ? null
+                                    : controller.goToNextPage,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 12),
+                                  decoration: BoxDecoration(
+                                    color: controller.isNextButtonDisabled
+                                        ? kWhiteColor
+                                        : kPrimaryColor,
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: controller.isNextButtonDisabled
+                                          ? kCreamColor
+                                          : kPrimaryColor,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Next',
+                                        style: AppStyles.interTextStyle()
+                                            .copyWith(
+                                          fontSize: 12,
+                                          color:
+                                          controller.isNextButtonDisabled
+                                              ? kBlackColor
+                                              : kWhiteColor,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(Icons.arrow_forward_ios_outlined,
+                                          size: 12,
+                                          color:
+                                          controller.isNextButtonDisabled
+                                              ? kBlackColor
+                                              : kWhiteColor),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 44.h,),
                         ],
                       ),
                     )
@@ -1299,4 +1621,81 @@ class AnalyticsScreen extends GetView<AnalyticsController> {
       ),),
     );
   }
+
+  DataRow _buildDataRow(String cityName, String totalUsers, String totalOrders, String avgTimeOrder,String revenue,int index,
+      bool isSwitchOn,
+      Function(bool, int) onSwitchChanged,context) {
+
+    return DataRow(
+      cells: [
+        DataCell(Text(
+          cityName,
+          style: AppStyles.workSansTextStyle()
+              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+        )),
+        DataCell(Text(
+          totalUsers,
+          style: AppStyles.workSansTextStyle()
+              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+        )),
+        DataCell(Text(
+          totalOrders,
+          style: AppStyles.workSansTextStyle()
+              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+        )),
+        DataCell(Text(
+          avgTimeOrder,
+          style: AppStyles.workSansTextStyle()
+              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+        )),
+        DataCell(
+          Center(
+            child: Container(
+              width: 93.w,
+              height: 27,
+              decoration: BoxDecoration(
+                color: kPrimaryColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(5.r),
+              ),
+              child: Center(
+                child: Text(
+                  "\$$revenue",
+                  style: AppStyles.workSansTextStyle().copyWith(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700,
+                      color: kPrimaryColor),
+                ),
+              ),
+            ),
+          ),
+        ),
+        DataCell(
+          Center(
+            child: SizedBox(
+              height: 30,
+              child: Transform.scale(
+                scale: 0.9,
+                child: Switch(
+                  value: isSwitchOn,
+                  // activeColor: kPrimaryColor,
+                  activeColor: kWhiteColor,
+                  inactiveThumbColor:
+                  kWhiteColor,
+                  trackOutlineColor:
+                  const WidgetStatePropertyAll(
+                      Colors.transparent),
+                  activeTrackColor:
+                  kPrimaryColor,
+                  onChanged: (value) {
+                    onSwitchChanged(value, index);
+                  },
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 }

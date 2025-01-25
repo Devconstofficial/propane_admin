@@ -615,7 +615,7 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 39,),
+                                const SizedBox(height: 17,),
                                 Container(
                                   height: 500,
                                   decoration: BoxDecoration(
@@ -667,13 +667,14 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                             ]
                                           ),
                                         ),
-                                        const SizedBox(height: 37,),
+                                        SizedBox(height: 12.h,),
                                         ListView.builder(
                                           padding: const EdgeInsets.all(0),
                                           shrinkWrap: true,
                                           physics: const NeverScrollableScrollPhysics(),
-                                          itemCount: 4,
+                                          itemCount: controller.chatList.length,
                                           itemBuilder: (context, index) {
+                                            final chat = controller.chatList[index];
                                           return Container(
                                             decoration: BoxDecoration(
                                               border: Border(bottom: BorderSide(color: kBorderColor3))
@@ -691,12 +692,12 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                                 height: 48,
                                                                 width: 48,
                                                                 decoration: BoxDecoration(
-                                                                    borderRadius: AppStyles.customBorder8
+                                                                    borderRadius: AppStyles.customBorder8,
                                                                 ),
                                                                 child: ClipRRect(
                                                                   borderRadius: AppStyles.customBorder8,
                                                                   child: Image.asset(
-                                                                    kImage3,
+                                                                    chat["image"].toString(),
                                                                     fit: BoxFit.cover,
                                                                   ),
                                                                 )
@@ -708,7 +709,7 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                                   width: 12,
                                                                   decoration: BoxDecoration(
                                                                       borderRadius: AppStyles.searchFieldBorder20,
-                                                                      color: kPrimaryColor,
+                                                                      color: chat["status"] == 'online' ? kLightGreenColor : kPrimaryColor,
                                                                       border: Border.all(color: kWhiteColor,width: 1.w)
                                                                   )
                                                               ),
@@ -720,11 +721,11 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                   Column(
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
-                                                        Text("John Doe",style: AppStyles.interTextStyle(),),
+                                                        Text(chat["name"].toString(),style: AppStyles.interTextStyle(),),
                                                         SizedBox(height: 10.h,),
                                                         SizedBox(
                                                             width: 239.w,
-                                                            child: Text("John Doe",style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kBorderColor2),maxLines: 1,overflow: TextOverflow.ellipsis,)),
+                                                            child: Text(chat["latestMessage"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kBorderColor2),maxLines: 1,overflow: TextOverflow.ellipsis,)),
                                                       ]
                                                   ),
                                                   const Spacer(),
@@ -733,7 +734,7 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          Container(
+                                                          chat["timeline"] == 'new' ?Container(
                                                               width: 40,
                                                               height: 19,
                                                               decoration: BoxDecoration(
@@ -743,8 +744,8 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                               ),
                                                               child:  Center(child: Text("New",style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
 
-                                                          ),
-                                                          SizedBox(width: 12.w),
+                                                          ) : SizedBox(),
+                                                          SizedBox(width: chat["timeline"] == 'new' ? 12.w : 0),
                                                           Container(
                                                               width: 19,
                                                               height: 19,
@@ -753,13 +754,13 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                                 color: kPrimaryColor,
 
                                                               ),
-                                                              child:  Center(child: Text("2",style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
+                                                              child:  Center(child: Text(chat["unreadCount"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
 
                                                           ),
                                                         ],
                                                       ),
                                                       SizedBox(height: 9.h),
-                                                      Text("12:55 am",style: AppStyles.interTextStyle().copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400,color: kBorderColor2))
+                                                      Text(chat["time"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400,color: kBorderColor2))
                                                     ],
                                                   )
                                                 ],

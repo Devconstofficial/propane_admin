@@ -1,5 +1,6 @@
 import 'dart:ui';
 const Color kPrimaryColor = Color(0xFFFF6347);
+const Color kLightGreenColor = Color(0xFFC4CAE8);
 const Color kTableBorderColor = Color(0xFFB9B9B9);
 const Color kActionsButtonColor = Color(0xFF979797);
 const Color kSecondaryColor = Color(0xFF88C3C6);

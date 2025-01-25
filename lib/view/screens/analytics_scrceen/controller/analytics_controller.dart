@@ -16,7 +16,8 @@ class AnalyticsController extends GetxController {
   var selectedLocation = ''.obs;
   var isNotificationVisible = false.obs;
   var progressPercentage = 70.0.obs;
-
+  final RxInt currentLocationPage = 1.obs;
+  List<bool> isSwitchOn = [];
 
 
   void updateValue(String value) {
@@ -34,6 +35,28 @@ class AnalyticsController extends GetxController {
   void toggleNotificationVisibility() {
     isNotificationVisible.value = !isNotificationVisible.value;
   }
+
+  void initializeSwitches(int length) {
+    isSwitchOn = List.generate(length, (index) => false);
+    update();
+  }
+
+  void toggleSwitch(bool value, int index) {
+    isSwitchOn[index] = value;
+    update();
+  }
+
+
+  final List<Map<String, dynamic>> allLocations = [
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": true,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": true,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": true,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": false,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": false,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": true,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": false,},
+    {"cityName": "Santo Domingo", "totalUser": "100", "totalOrder": "100", "avgTime": "4 days", "amount": "1000","isSwitchOn": true,},
+    ];
 
 
   @override
@@ -164,4 +187,40 @@ class AnalyticsController extends GetxController {
   void updateData(String key, double value) {
     dataMap[key] = value;
   }
+
+  final int itemsPerPage = 2;
+
+  List<Map<String, dynamic>> get currentPageLocations {
+    final startIndex = (currentLocationPage.value - 1) * itemsPerPage;
+    final endIndex = startIndex + itemsPerPage;
+    return allLocations.sublist(
+      startIndex,
+      endIndex > allLocations.length ? allLocations.length : endIndex,
+    );
+  }
+
+  int get totalPages => (allLocations.length / itemsPerPage).ceil();
+
+  void changePage(int pageNumber) {
+    if (pageNumber > 0 && pageNumber <= totalPages) {
+      currentLocationPage.value = pageNumber;
+    }
+  }
+
+  void goToPreviousPage() {
+    if (currentLocationPage.value > 1) {
+      currentLocationPage.value -= 1;
+    }
+  }
+
+  void goToNextPage() {
+    if (currentLocationPage.value < totalPages) {
+      currentLocationPage.value += 1;
+    }
+  }
+
+  bool get isBackButtonDisabled => currentLocationPage.value == 1;
+
+  bool get isNextButtonDisabled => currentLocationPage.value == totalPages;
+
 }
