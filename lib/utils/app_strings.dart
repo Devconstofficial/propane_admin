@@ -103,7 +103,7 @@ const String kCreateUserScreenRoute = "/create-user-screen-route";
 const String kCreateDriverScreenRoute = "/create-driver-screen-route";
 const String kBeverageScreenRoute = "/beverage-screen-route";
 const String kSupportScreenRoute = "/support-screen-route";
-const String kChatScreenRoute = "/support-screen-route";
+const String kChatScreenRoute = "/chat-screen-route";
 const String kRevenueScreenRoute = "/revenue-screen-route";
 const String kAnalyticsScreenRoute = "/analytics-screen-route";
 

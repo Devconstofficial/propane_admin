@@ -306,7 +306,7 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                     ),
                                     CustomButton(text: kNewMessage, height: 56, onTap: (){
                                       final menuController = Get.put(MenuControllers());
-                                      Get.toNamed(kAddAdminScreenRoute);
+                                      Get.toNamed(kChatScreenRoute);
                                       menuController.onItemTapped(8);
                                     },width: 171,)
                                   ],
@@ -675,95 +675,103 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                           itemCount: controller.chatList.length,
                                           itemBuilder: (context, index) {
                                             final chat = controller.chatList[index];
-                                          return Container(
-                                            decoration: BoxDecoration(
-                                              border: Border(bottom: BorderSide(color: kBorderColor3))
-                                            ),
-                                            child: Padding(
-                                              padding: AppStyles().chatPadding,
-                                              child: Row(
-                                                children: [
-                                                  SizedBox(
-                                                      height: 48,
-                                                      width: 48,
-                                                      child: Stack(
-                                                          children: [
-                                                            Container(
-                                                                height: 48,
-                                                                width: 48,
-                                                                decoration: BoxDecoration(
-                                                                    borderRadius: AppStyles.customBorder8,
-                                                                ),
-                                                                child: ClipRRect(
-                                                                  borderRadius: AppStyles.customBorder8,
-                                                                  child: Image.asset(
-                                                                    chat["image"].toString(),
-                                                                    fit: BoxFit.cover,
-                                                                  ),
-                                                                )
-                                                            ),
-                                                            Positioned(
-                                                              right: 0,
-                                                              child: Container(
-                                                                  height: 12,
-                                                                  width: 12,
+                                          return GestureDetector(
+                                            onTap: (){
+                                              final menuController = Get.put(MenuControllers());
+                                              Get.toNamed(kChatScreenRoute);
+                                              menuController.onItemTapped(8);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                border: Border(bottom: BorderSide(color: kBorderColor3))
+                                              ),
+                                              child: Padding(
+                                                padding: AppStyles().chatPadding,
+                                                child: Row(
+                                                  children: [
+                                                    SizedBox(
+                                                        height: 48,
+                                                        width: 48,
+                                                        child: Stack(
+                                                            children: [
+                                                              Container(
+                                                                  height: 48,
+                                                                  width: 48,
                                                                   decoration: BoxDecoration(
-                                                                      borderRadius: AppStyles.searchFieldBorder20,
-                                                                      color: chat["status"] == 'online' ? kLightGreenColor : kPrimaryColor,
-                                                                      border: Border.all(color: kWhiteColor,width: 1.w)
+                                                                      borderRadius: AppStyles.customBorder8,
+                                                                  ),
+                                                                  child: ClipRRect(
+                                                                    borderRadius: AppStyles.customBorder8,
+                                                                    child: Image.asset(
+                                                                      chat["image"].toString(),
+                                                                      fit: BoxFit.cover,
+                                                                    ),
                                                                   )
                                                               ),
-                                                            )
-                                                          ]
-                                                      )
-                                                  ),
-                                                  SizedBox(width: 17.w),
-                                                  Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(chat["name"].toString(),style: AppStyles.interTextStyle(),),
-                                                        SizedBox(height: 10.h,),
-                                                        SizedBox(
-                                                            width: 239.w,
-                                                            child: Text(chat["latestMessage"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kBorderColor2),maxLines: 1,overflow: TextOverflow.ellipsis,)),
-                                                      ]
-                                                  ),
-                                                  const Spacer(),
-                                                  Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                                    children: [
-                                                      Row(
+                                                              Positioned(
+                                                                right: 0,
+                                                                child: Container(
+                                                                    height: 12,
+                                                                    width: 12,
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius: AppStyles.searchFieldBorder20,
+                                                                        color: chat["status"] == 'online' ? kLightGreenColor : kPrimaryColor,
+                                                                        border: Border.all(color: kWhiteColor,width: 1.w)
+                                                                    )
+                                                                ),
+                                                              )
+                                                            ]
+                                                        )
+                                                    ),
+                                                    SizedBox(width: 17.w),
+                                                    Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          chat["timeline"] == 'new' ?Container(
-                                                              width: 40,
-                                                              height: 19,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: AppStyles.customBorder8,
-                                                                color: kPrimaryColor,
+                                                          Text(chat["name"].toString(),style: AppStyles.interTextStyle(),),
+                                                          SizedBox(height: 10.h,),
+                                                          SizedBox(
+                                                              width: 239.w,
+                                                              child: Text(chat["latestMessage"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kBorderColor2),maxLines: 1,overflow: TextOverflow.ellipsis,)),
+                                                        ]
+                                                    ),
+                                                    const Spacer(),
+                                                    Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            chat["timeline"] == 'new' ?Container(
+                                                                width: 40,
+                                                                height: 19,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: AppStyles.customBorder8,
+                                                                  color: kPrimaryColor,
 
-                                                              ),
-                                                              child:  Center(child: Text("New",style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
+                                                                ),
+                                                                child:  Center(child: Text("New",style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
 
-                                                          ) : SizedBox(),
-                                                          SizedBox(width: chat["timeline"] == 'new' ? 12.w : 0),
-                                                          Container(
-                                                              width: 19,
-                                                              height: 19,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: AppStyles.customBorderAll100,
-                                                                color: kPrimaryColor,
+                                                            ) : SizedBox(),
+                                                            SizedBox(width: chat["timeline"] == 'new' ? 12.w : 0),
+                                                            Container(
+                                                                width: 19,
+                                                                height: 19,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: AppStyles.customBorderAll100,
+                                                                  color: kPrimaryColor,
 
-                                                              ),
-                                                              child:  Center(child: Text(chat["unreadCount"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
+                                                                ),
+                                                                child:  Center(child: Text(chat["unreadCount"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
 
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(height: 9.h),
-                                                      Text(chat["time"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400,color: kBorderColor2))
-                                                    ],
-                                                  )
-                                                ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(height: 9.h),
+                                                        Text(chat["time"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400,color: kBorderColor2))
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           );

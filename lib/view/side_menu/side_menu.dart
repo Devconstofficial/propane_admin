@@ -743,6 +743,7 @@ class _SideMenuState extends State<SideMenu> {
                           ),
                         );
                       }),
+                      SizedBox(height: 35.h,),
                     ],
                   ),
                 ),

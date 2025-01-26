@@ -14,6 +14,7 @@ import '../view/screens/driver_screen/create_driver_screen.dart';
 import '../view/screens/driver_screen/driver_screen.dart';
 import '../view/screens/job_management_screen/job_detail_screen.dart';
 import '../view/screens/revenue_screen/revenue_screen.dart';
+import '../view/screens/support_screens/chat_screen.dart';
 import '../view/screens/user_screen/create_user_screen.dart';
 import 'app_strings.dart';
 
@@ -35,6 +36,7 @@ class RouteGenerator {
       GetPage(name: kSupportScreenRoute, page: () => const CustomerSupportScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
       GetPage(name: kRevenueScreenRoute, page: () => RevenueScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
       GetPage(name: kAnalyticsScreenRoute, page: () => AnalyticsScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
+      GetPage(name: kChatScreenRoute, page: () => const ChatScreen(), binding: ScreenBindings(),transition: Transition.noTransition),
     ];
   }
 }

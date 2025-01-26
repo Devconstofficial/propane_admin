@@ -14,6 +14,7 @@ class SupportController extends GetxController {
   TextEditingController passController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
   TextEditingController roleController = TextEditingController();
+  final TextEditingController messageController = TextEditingController();
 
   var isFormValid = false.obs;
 
@@ -41,9 +42,17 @@ class SupportController extends GetxController {
     roleController.clear();
   }
 
-  // void createAdmin() {
-  //   clearFields();
-  // }
+  var messages = [
+    {'text': 'Hi! May I know about your property’s neighborhood?', 'isUser': true},
+    {'text': 'Sure, man! You can check it from the description section of the property.', 'isUser': false},
+    {'text': 'I see, thanks for informing!', 'isUser': true},
+    {'text': 'Thanks for contacting me!', 'isUser': false},
+  ].obs;
+
+  void sendMessage(String text) {
+    messages.add({'text': text, 'isUser': true});
+  }
+
 
   void toggleNotificationVisibility() {
     isNotificationVisible.value = !isNotificationVisible.value;
