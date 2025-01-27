@@ -56,6 +56,7 @@ class AppStyles {
 
   EdgeInsets get horizontal => EdgeInsets.symmetric(horizontal: 37.w);
   EdgeInsets get horizontal28 => EdgeInsets.symmetric(horizontal: 28.w);
+  EdgeInsets get horizontal30 => EdgeInsets.symmetric(horizontal: 30.w);
   EdgeInsets get appBarPadding => EdgeInsets.only(left: 28.0.w,right: 10.w,top: 30);
   EdgeInsets get horizontal16 => EdgeInsets.symmetric(horizontal: 16.0.w);
   EdgeInsets get horizontal24 => EdgeInsets.symmetric(horizontal: 24.0.w);

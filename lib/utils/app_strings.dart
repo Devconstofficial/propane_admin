@@ -86,6 +86,14 @@ String kAddBeverage = 'Add Beverage';
 String kCustomerRequests = 'Customer Requests';
 String kActiveChats = 'Active Chats';
 String kNewMessage = 'New Message';
+String kFirstTimeDelivery = 'First Time Free Delivery';
+String kDiscountManagement = 'Discount Management';
+String kRegionalPromotion = 'Regional Promotion';
+String kSeasonalPromotion = 'Seasonal Promotion';
+String kReferralPromotion = 'Referral Promotion';
+String kPopUps = 'Pop-Ups';
+String kAddCoupon = 'Add Coupon';
+String kDisableAll = 'Disable All';
 String kDeleteDetail = 'Are you sure you want to delete this item? This action is irreversible and will permanently remove the selected record from the system.';
 
 
@@ -106,5 +114,6 @@ const String kSupportScreenRoute = "/support-screen-route";
 const String kChatScreenRoute = "/chat-screen-route";
 const String kRevenueScreenRoute = "/revenue-screen-route";
 const String kAnalyticsScreenRoute = "/analytics-screen-route";
+const String kPromotionScreenRoute = "/promotion-screen-route";
 
 

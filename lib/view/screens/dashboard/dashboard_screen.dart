@@ -108,7 +108,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                   )),
                               GestureDetector(
                                 onTap: () {
-                                  // Get.toNamed(kUserScreenRoute);
+                                  Get.toNamed(kAnalyticsScreenRoute);
                                   menuController.onItemTapped(6);
                                 },
                                 child: DashboardContainer(
@@ -122,7 +122,7 @@ class DashboardScreen extends GetView<DashboardController> {
                               ),
                               GestureDetector(
                                   onTap: () {
-                                    // Get.toNamed(kUserScreenRoute);
+                                    Get.toNamed(kAnalyticsScreenRoute);
                                     menuController.onItemTapped(6);
                                   },
                                   child: DashboardContainer(
@@ -692,9 +692,9 @@ class DashboardScreen extends GetView<DashboardController> {
                                       borderRadius: AppStyles.customBorder16,
                                       border: Border.all(color: kBlackColor.withOpacity(0.08))
                                   ),
-                                  child: Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top:22,bottom: 28,left: 28,right: 28),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top:22,bottom: 28,left: 28,right: 28),
+                                    child: Expanded(
                                       child: Column(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
@@ -786,7 +786,6 @@ class DashboardScreen extends GetView<DashboardController> {
                                             ),
                                           ]),
                                     ),
-                                    // flex: 1,
                                   ),
                                 ),
                                 SizedBox(width: 32.w),

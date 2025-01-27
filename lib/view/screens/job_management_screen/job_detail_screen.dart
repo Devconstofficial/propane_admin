@@ -178,6 +178,40 @@ class JobDetailScreen extends GetView<JobController> {
                                 ],
                               ),
                               SizedBox(height: 85.h,),
+                              Container(
+                                height: 80,
+                                color: kWhiteColor,
+                                child: Stepper(
+                                  type: StepperType.horizontal,
+                                  elevation: 0,
+                                  currentStep: controller.currentStep.value,
+                                  onStepTapped: (step) => controller.goToStep(step),
+                                  onStepContinue: controller.nextStep,
+                                  onStepCancel: controller.previousStep,
+                                  steps: List.generate(5, (index) {
+                                    return Step(
+                                      title: Text(
+                                        'Step ${index + 1}',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: index == controller.currentStep.value
+                                              ? kPrimaryColor
+                                              : Colors.grey,
+                                        ),
+                                      ),
+                                      content: const SizedBox.shrink(),
+                                      isActive: index <= controller.currentStep.value,
+                                      state: index < controller.currentStep.value
+                                          ? StepState.complete
+                                          : (index == controller.currentStep.value
+                                          ? StepState.editing
+                                          : StepState.indexed),
+                                    );
+                                  }),
+                                ),
+                              ),
+                              SizedBox(height: 44.h,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
