@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_styles.dart';
 
@@ -89,12 +90,14 @@ class _MyCustomTextFieldState extends State<MyCustomTextField> {
           borderRadius: AppStyles.customBorderAll,
           borderSide: BorderSide(
             color: widget.focusBorderColor ?? kPrimaryColor,
+              width: 1.w
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: AppStyles.customBorderAll,
           borderSide: BorderSide(
             color: widget.borderColor ?? kBorderColor1,
+              width: 1.w
           ),
         ),
       ),

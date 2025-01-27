@@ -40,16 +40,16 @@ class MyApp extends StatelessWidget {
         filled: true,
         iconColor: kBackGroundColor,
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: kBorderColor1),
+          borderSide: BorderSide(color: kBorderColor1,width: 1.w),
           borderRadius: AppStyles.customBorderAll,
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: kPrimaryColor),
+          borderSide: BorderSide(color: kPrimaryColor,width: 1.w),
           borderRadius: AppStyles.customBorderAll,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppStyles.customBorderAll,
-          borderSide: const BorderSide(color: kPrimaryColor),
+          borderSide: BorderSide(color: kPrimaryColor,width: 1.w),
         ),
       ),
       textTheme: const TextTheme(

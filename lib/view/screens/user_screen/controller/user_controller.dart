@@ -7,7 +7,9 @@ import '../../../../utils/app_colors.dart';
 
 
 class UserController extends GetxController {
-  var selectedCrimeType = ''.obs;
+  var selectedUserType = ''.obs;
+  var selectedPayType = ''.obs;
+  var selectedReminderType = ''.obs;
   RxList notifications = [].obs;
   RxList activities = [].obs;
   var selectedFilters = <String>{}.obs;

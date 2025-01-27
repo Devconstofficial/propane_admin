@@ -41,6 +41,7 @@ const Color kLightBlack1 = Color(0xFF454459);
 const Color kDarkGrey = Color(0xFF1D1D1D);
 const Color kRatingStarColor = Color(0xFF3F3F3F);
 const Color kFieldBorderColor = Color(0xFFCED4DA);
+const Color kFieldBorderColor1 = Color(0xFFC2C6CE);
 const Color kDisableButtonColor = Color(0xFFE9ECEF);
 const Color kDisableBtnTextColor = Color(0xFFADB5BD);
 const Color kLocationIconColor = Color(0xFF343A40);

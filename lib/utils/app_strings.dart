@@ -37,6 +37,8 @@ String kAgeRange = 'Age Range';
 String kEmploymentStatus = 'Employment Status';
 String kRevenueLocation = 'Revenue By Location';
 String kCrimeTypeText = 'Crime Type';
+String kSendReminder = 'Send Reminder';
+String kSendReminderDetail = 'Would you like to send a reminder to the user regarding their gas level or subscription renewal? Choose the type of reminder and customize the message if needed.';
 String kWeeklyReported = 'Weekly Reported Crimes';
 String kUserManagement = 'User Management';
 String kAdminManagement = 'Admin Management';
@@ -94,6 +96,10 @@ String kReferralPromotion = 'Referral Promotion';
 String kPopUps = 'Pop-Ups';
 String kAddCoupon = 'Add Coupon';
 String kDisableAll = 'Disable All';
+String kActive = 'Active';
+String kPending = 'Pending';
+String kRejected = 'Rejected';
+String kDisabled = 'Disabled';
 String kDeleteDetail = 'Are you sure you want to delete this item? This action is irreversible and will permanently remove the selected record from the system.';
 
 
