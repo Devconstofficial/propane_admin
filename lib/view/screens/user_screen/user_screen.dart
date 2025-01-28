@@ -568,7 +568,7 @@ class UserScreen extends GetView<UserController> {
                     ),
                     const SizedBox(width: 10,),
                     Text(kFirstTimeFreeDel,
-                      style: AppStyles.workSansTextStyle().copyWith(fontWeight: FontWeight.w400,fontSize: 14),textAlign: TextAlign.center,),
+                      style: AppStyles.workSansTextStyle().copyWith(fontWeight: FontWeight.w500,fontSize: 14),textAlign: TextAlign.center,),
                   ],
                 ),),
                 const SizedBox(height: 12,),
@@ -594,7 +594,7 @@ class UserScreen extends GetView<UserController> {
                     ),
                     const SizedBox(width: 10,),
                     Text(kCanPayCash,
-                      style: AppStyles.workSansTextStyle().copyWith(fontWeight: FontWeight.w400,fontSize: 16),textAlign: TextAlign.center,),
+                      style: AppStyles.workSansTextStyle().copyWith(fontWeight: FontWeight.w500,fontSize: 14),textAlign: TextAlign.center,),
                   ],
                 ),),
                 const SizedBox(
@@ -783,7 +783,7 @@ class UserScreen extends GetView<UserController> {
                                   color: kWhiteColor,
                                   borderRadius: AppStyles.customBorder8),
                               child: const MyCustomTextField(
-                                hintText: "Phone Number",
+                                hintText: "Last Synced",
                                 borderColor: kFieldBorderColor,
                                 fillColor: kWhiteColor,
                                 contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
@@ -1508,8 +1508,13 @@ class UserScreen extends GetView<UserController> {
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                       color: controller.isBackButtonDisabled
-                                          ? kBackGroundColor
+                                          ? kWhiteColor
                                           : kPrimaryColor,
+                                      border: Border.all(
+                                        color: controller.isBackButtonDisabled
+                                            ? kCreamColor
+                                            : kPrimaryColor,
+                                      ),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Row(
@@ -1560,9 +1565,14 @@ class UserScreen extends GetView<UserController> {
                                           decoration: BoxDecoration(
                                             color: isSelected
                                                 ? kPrimaryColor
-                                                : kBackGroundColor,
+                                                : kWhiteColor,
                                             borderRadius:
-                                                BorderRadius.circular(4),
+                                            BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: isSelected
+                                                  ? kPrimaryColor
+                                                  : kCreamColor,
+                                            ),
                                           ),
                                           child: Center(
                                             child: Text(
@@ -1591,8 +1601,11 @@ class UserScreen extends GetView<UserController> {
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                       color: controller.isNextButtonDisabled
-                                          ? kBackGroundColor
+                                          ? kWhiteColor
                                           : kPrimaryColor,
+                                      border: Border.all(
+                                          color: controller.isNextButtonDisabled ? kCreamColor : kPrimaryColor
+                                      ),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Row(
@@ -1808,8 +1821,13 @@ class UserScreen extends GetView<UserController> {
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                       color: controller.isSensorBackButtonDisabled
-                                          ? kBackGroundColor
+                                          ? kWhiteColor
                                           : kPrimaryColor,
+                                      border: Border.all(
+                                        color: controller.isSensorBackButtonDisabled
+                                            ? kCreamColor
+                                            : kPrimaryColor,
+                                      ),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Row(
@@ -1860,9 +1878,14 @@ class UserScreen extends GetView<UserController> {
                                           decoration: BoxDecoration(
                                             color: isSelected
                                                 ? kPrimaryColor
-                                                : kBackGroundColor,
+                                                : kWhiteColor,
                                             borderRadius:
                                             BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: isSelected
+                                                  ? kPrimaryColor
+                                                  : kCreamColor,
+                                            ),
                                           ),
                                           child: Center(
                                             child: Text(
@@ -1891,8 +1914,13 @@ class UserScreen extends GetView<UserController> {
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                       color: controller.isSensorNextButtonDisabled
-                                          ? kBackGroundColor
+                                          ? kWhiteColor
                                           : kPrimaryColor,
+                                      border: Border.all(
+                                        color: controller.isSensorNextButtonDisabled
+                                            ? kCreamColor
+                                            : kPrimaryColor,
+                                      ),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Row(

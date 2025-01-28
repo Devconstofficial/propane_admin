@@ -9,6 +9,7 @@ import '../../../utils/app_strings.dart';
 import '../../../utils/app_styles.dart';
 import '../../../utils/common_code.dart';
 import '../../side_menu/side_menu.dart';
+import '../../widgets/custom_textField.dart';
 import '../../widgets/delete_dialog.dart';
 import '../../widgets/reuseable_datarow.dart';
 import 'controller/promotion_controller.dart';
@@ -16,6 +17,876 @@ import 'controller/promotion_controller.dart';
 
 class PromotionScreen extends GetView<PromotionsController> {
   const PromotionScreen({super.key});
+
+  Widget discountDialogue(BuildContext context,bool isDiscount, bool isRegional, bool isSeasonal) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: SvgPicture.asset(
+                        kCrossIcon,
+                        height: 16,
+                        width: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                isDiscount == true ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          kDiscountType,
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          "*",
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                        ),
+                      ],
+                    ),
+                    Container(
+                        height: 40,
+                        width: width,
+                        decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: AppStyles.customBorder8,),
+                        child: MyCustomTextField(
+                          hintText: kDiscountTypeHint,
+                          borderColor: kFieldBorderColor,
+                          fillColor: kWhiteColor,
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                        )
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          kDiscountAmount,
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          "*",
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                        ),
+                      ],
+                    ),
+                    Container(
+                        height: 40,
+                        width: width,
+                        decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: AppStyles.customBorder8,),
+                        child: MyCustomTextField(
+                          hintText: kDiscountAmount,
+                          borderColor: kFieldBorderColor,
+                          fillColor: kWhiteColor,
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                        )
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          kSpecifyUser,
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          "*",
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                        ),
+                      ],
+                    ),
+                    Container(
+                        height: 40,
+                        width: width,
+                        decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: AppStyles.customBorder8,),
+                        child: MyCustomTextField(
+                          hintText: kSpecifyUser,
+                          borderColor: kFieldBorderColor,
+                          fillColor: kWhiteColor,
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                        )
+                    ),
+                  ]
+                ) :
+                const SizedBox(),
+                isRegional == true ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kSelectRegion,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kSelectRegionHint,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kPromotionType,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kPromotionTypeHint,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kSpecifyUser,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kSpecifyUser,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kDuration,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kDurationHint,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                    ]
+                )
+                    : const SizedBox(),
+                isSeasonal == true ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kPromotionalTitle,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kPromotionalTitleHint,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kPromotionType,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kPromotionTypeHint,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kSpecifyUser,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kSpecifyUser,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kSpecifyRegion,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kSpecifyRegion,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            kDuration,
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "*",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                          ),
+                        ],
+                      ),
+                      Container(
+                          height: 40,
+                          width: width,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: AppStyles.customBorder8,),
+                          child: MyCustomTextField(
+                            hintText: kDuration,
+                            borderColor: kFieldBorderColor,
+                            fillColor: kWhiteColor,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                          )
+                      ),
+                    ]
+                )
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 52,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomButton(
+                      text: "Cancel",
+                      height: 40,
+                      onTap: () {
+                        Get.back();
+                      },
+                      width: 75,
+                      textColor: kBlackColor,
+                      color: kWhiteColor,
+                      borderColor: kFieldBorderColor1,
+                      fontSize: 14.sp,
+                    ),
+                    CustomButton(
+                      text: "Active",
+                      height: 40,
+                      onTap: () {},
+                      width: 83,
+                      color: kPrimaryColor,
+                      fontSize: 14.sp,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget createPopupDialogue(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset(
+                      kCrossIcon,
+                      height: 16,
+                      width: 16,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Center(
+                child: SizedBox(
+                  height: 90,
+                  width: 90,
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 90,
+                        width: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: AppStyles.customBorderAll100
+                        ),
+                        child: ClipRRect(
+                          borderRadius: AppStyles.customBorderAll100,
+                          child: controller.selectedImage.value == null
+                              ? Image.asset(
+                            kTankImage,
+                            fit: BoxFit.cover,
+                          )
+                              : Image.memory(
+                            controller.selectedImage.value!,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: InkWell(
+                          onTap: (){
+                            controller.pickImage();
+                          },
+                          child: CircleAvatar(
+                            radius: 20.r,
+                            backgroundColor: kPrimaryColor,
+                            child: Center(
+                              child: Image.asset(
+                                kCameraIcon,
+                                height: 15,
+                                width: 15
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]
+                  )
+                ),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Title",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "Title",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Subtitle",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "Subtitle",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Redirection URL",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "www.propanego.com/sensor-offer",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 52,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton(
+                    text: "Cancel",
+                    height: 40,
+                    onTap: () {
+                      Get.back();
+                    },
+                    width: 75,
+                    textColor: kBlackColor,
+                    color: kWhiteColor,
+                    borderColor: kFieldBorderColor1,
+                    fontSize: 14.sp,
+                  ),
+                  CustomButton(
+                    text: "Create",
+                    height: 40,
+                    onTap: () {},
+                    width: 73,
+                    color: kPrimaryColor,
+                    fontSize: 14.sp,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget addCouponDialogue(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset(
+                      kCrossIcon,
+                      height: 16,
+                      width: 16,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Coupon Name",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: "Coupon Name",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Amount",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: "Amount",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "User Name",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: "User Name",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Reason/Notes",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: "Reason/Notes",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Expiration Date",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: "Expiration Date",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 52,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton(
+                    text: "Cancel",
+                    height: 40,
+                    onTap: () {
+                      Get.back();
+                    },
+                    width: 75,
+                    textColor: kBlackColor,
+                    color: kWhiteColor,
+                    borderColor: kFieldBorderColor1,
+                    fontSize: 14.sp,
+                  ),
+                  CustomButton(
+                    text: "Activate",
+                    height: 40,
+                    onTap: () {},
+                    width: 83,
+                    color: kPrimaryColor,
+                    fontSize: 14.sp,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -237,7 +1108,14 @@ class PromotionScreen extends GetView<PromotionsController> {
                                         fontSize: 24.sp, fontWeight: FontWeight.w600),
                                   ),
                                   const Spacer(),
-                                  CustomButton(text: "Create Discount", height: 30, onTap: (){},width: 142.w,fontSize: 12.sp,),
+                                  CustomButton(text: "Create Discount", height: 30, onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return discountDialogue(context,true,false,false);
+                                      },
+                                    );
+                                  },width: 142.w,fontSize: 12.sp,),
                                   SizedBox(width: 22.w),
                                   CustomButton(text: kDisableAll, height: 30, onTap: (){},width: 111.w,fontSize: 12.sp,)
                                 ],
@@ -251,7 +1129,14 @@ class PromotionScreen extends GetView<PromotionsController> {
                                         fontSize: 24.sp, fontWeight: FontWeight.w600),
                                   ),
                                   const Spacer(),
-                                  CustomButton(text: "Create Promotion", height: 30, onTap: (){},width: 142.w,fontSize: 12.sp,),
+                                  CustomButton(text: "Create Promotion", height: 30, onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return discountDialogue(context,false,true,false);
+                                      },
+                                    );
+                                  },width: 142.w,fontSize: 12.sp,),
                                   SizedBox(width: 22.w),
                                   CustomButton(text: kDisableAll, height: 30, onTap: (){},width: 111.w,fontSize: 12.sp,)
                                 ],
@@ -265,7 +1150,14 @@ class PromotionScreen extends GetView<PromotionsController> {
                                         fontSize: 24.sp, fontWeight: FontWeight.w600),
                                   ),
                                   const Spacer(),
-                                  CustomButton(text: "Create Promotion", height: 30, onTap: (){},width: 142.w,fontSize: 12.sp,),
+                                  CustomButton(text: "Create Promotion", height: 30, onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return discountDialogue(context,false,false,true);
+                                      },
+                                    );
+                                  },width: 142.w,fontSize: 12.sp,),
                                   SizedBox(width: 22.w),
                                   CustomButton(text: kDisableAll, height: 30, onTap: (){},width: 111.w,fontSize: 12.sp,)
                                 ],
@@ -291,7 +1183,14 @@ class PromotionScreen extends GetView<PromotionsController> {
                                         fontSize: 24.sp, fontWeight: FontWeight.w600),
                                   ),
                                   const Spacer(),
-                                  CustomButton(text: "Create Popup", height: 30, onTap: (){},width: 128.w,fontSize: 12.sp,),
+                                  CustomButton(text: "Create Popup", height: 30, onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return createPopupDialogue(context);
+                                      },
+                                    );
+                                  },width: 128.w,fontSize: 12.sp,),
                                   SizedBox(width: 22.w),
                                   CustomButton(text: kDisableAll, height: 30, onTap: (){},width: 111.w,fontSize: 12.sp,)
                                 ],
@@ -305,7 +1204,14 @@ class PromotionScreen extends GetView<PromotionsController> {
                                         fontSize: 24.sp, fontWeight: FontWeight.w600),
                                   ),
                                   const Spacer(),
-                                  CustomButton(text: "Add Coupon", height: 30, onTap: (){},width: 128.w,fontSize: 12.sp,),
+                                  CustomButton(text: "Add Coupon", height: 30, onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return addCouponDialogue(context);
+                                      },
+                                    );
+                                  },width: 128.w,fontSize: 12.sp,),
                                   SizedBox(width: 22.w),
                                   CustomButton(text: kDisableAll, height: 30, onTap: (){},width: 111.w,fontSize: 12.sp,)
                                 ],
@@ -487,7 +1393,45 @@ class PromotionScreen extends GetView<PromotionsController> {
                                                 controller.update();
                                               } : (value, index) {},
                                               context: context,
-                                              isSwitchButton: controller.selectedIndex.value == 0 ? true : false
+                                              isSwitchButton: controller.selectedIndex.value == 0 ? true : false,
+                                            onEdit: (){
+                                              showMenu(
+                                                context: context,
+                                                color: kWhiteColor,
+                                                position: const RelativeRect.fromLTRB(200, 335, 110, 0),
+                                                items: [
+                                                  PopupMenuItem(
+                                                    value: 1,
+                                                    height: 40,
+                                                    child: Obx(() => Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        SizedBox(
+                                                          height: 30,
+                                                          child: Transform.scale(
+                                                            scale: 0.9,
+                                                            child: Switch(
+                                                              activeColor: kWhiteColor,
+                                                              inactiveThumbColor: kWhiteColor,
+                                                              trackOutlineColor:
+                                                              const WidgetStatePropertyAll(Colors.transparent),
+                                                              activeTrackColor: kPrimaryColor,
+                                                              value: controller.isSwitchOn.value,
+                                                              onChanged: (value) {
+                                                                controller.toggleSwitch(value);
+                                                              },
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )),
+                                                  ),
+                                                ],
+                                              ).then((value) {
+                                                // Close the popup menu when done
+                                                // controller.togglePopupMenu(false);
+                                              });
+                                            },
                                           ).buildRow();
                                         }
                                       }).toList(),
@@ -727,7 +1671,42 @@ class PromotionScreen extends GetView<PromotionsController> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-
+                          showMenu(
+                            context: context,
+                            color: kWhiteColor,
+                            position: const RelativeRect.fromLTRB(200, 335, 110, 0),
+                            items: [
+                              PopupMenuItem(
+                                value: 1,
+                                height: 40,
+                                child: Obx(() => Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: 30,
+                                      child: Transform.scale(
+                                        scale: 0.9,
+                                        child: Switch(
+                                          activeColor: kWhiteColor,
+                                          inactiveThumbColor: kWhiteColor,
+                                          trackOutlineColor:
+                                          const WidgetStatePropertyAll(Colors.transparent),
+                                          activeTrackColor: kPrimaryColor,
+                                          value: controller.isSwitchOn.value,
+                                          onChanged: (value) {
+                                            controller.toggleSwitch(value);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                              ),
+                            ],
+                          ).then((value) {
+                            // Close the popup menu when done
+                            // controller.togglePopupMenu(false);
+                          });
                         },
                         child: SvgPicture.asset(
                           kEditIcon,

@@ -10,12 +10,301 @@ import '../../../utils/app_styles.dart';
 import '../../../utils/common_code.dart';
 import '../../side_menu/side_menu.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_textField.dart';
 import '../../widgets/filter_btn.dart';
 import '../../widgets/notifiction_panel.dart';
 import 'controller/beverage_controller.dart';
 
 class BeverageScreen extends GetView<BeverageController> {
   const BeverageScreen({super.key});
+
+  Widget addBeverageDialogue(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset(
+                      kCrossIcon,
+                      height: 16,
+                      width: 16,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Center(
+                child: SizedBox(
+                    height: 90,
+                    width: 90,
+                    child: Stack(
+                        children: [
+                          Container(
+                              height: 90,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                  borderRadius: AppStyles.customBorderAll100
+                              ),
+                              child: ClipRRect(
+                                borderRadius: AppStyles.customBorderAll100,
+                                child: controller.selectedImage.value == null
+                                    ? Image.asset(
+                                  kTankImage,
+                                  fit: BoxFit.cover,
+                                )
+                                    : Image.memory(
+                                  controller.selectedImage.value!,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: InkWell(
+                              onTap: (){
+                                controller.pickImage();
+                              },
+                              child: CircleAvatar(
+                                radius: 20.r,
+                                backgroundColor: kPrimaryColor,
+                                child: Center(
+                                  child: Image.asset(
+                                      kCameraIcon,
+                                      height: 15,
+                                      width: 15
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]
+                    )
+                ),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Name",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "Name",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Price",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "Price",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Assign Region",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                height: 40,
+                width: width,
+                decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,
+                    border: Border.all(color: kFieldBorderColor)),
+                child: Obx(() {
+                  return DropdownButton<String>(
+                    borderRadius: AppStyles.customBorder8,
+                    isExpanded: true,
+                    dropdownColor: kWhiteColor,
+                    focusColor: kWhiteColor,
+                    value: controller.selectedRegion.value.isNotEmpty
+                        ? controller.selectedRegion.value
+                        : null,
+                    hint: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        "Specify Region",
+                        style: AppStyles.workSansTextStyle()
+                            .copyWith(fontSize: 14.sp, color: kHintColor),
+                      ),
+                    ),
+                    icon: Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Icon(Icons.arrow_drop_down_outlined,
+                          size: 25, color: kBlackColor.withOpacity(0.4)),
+                    ),
+                    underline: const SizedBox.shrink(),
+                    items: ["Region 1", "Region 2", "Region 3"]
+                        .map((String region) => DropdownMenuItem<String>(
+                      value: region,
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          region,
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp),
+                        ),
+                      ),
+                    ))
+                        .toList(),
+                    onChanged: (String? newValue) {
+                      controller.selectedRegion.value = newValue!;
+                    },
+                  );
+                }),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Add-on Eligibility",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Container(
+                height: 40,
+                width: width,
+                decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,
+                    border: Border.all(color: kFieldBorderColor)),
+                child: Obx(() {
+                  return DropdownButton<String>(
+                    borderRadius: AppStyles.customBorder8,
+                    isExpanded: true,
+                    dropdownColor: kWhiteColor,
+                    focusColor: kWhiteColor,
+                    value: controller.selectedEligibility.value.isNotEmpty
+                        ? controller.selectedEligibility.value
+                        : null,
+                    hint: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        "Yes/no",
+                        style: AppStyles.workSansTextStyle()
+                            .copyWith(fontSize: 14.sp, color: kHintColor),
+                      ),
+                    ),
+                    icon: Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Icon(Icons.arrow_drop_down_outlined,
+                          size: 25, color: kBlackColor.withOpacity(0.4)),
+                    ),
+                    underline: const SizedBox.shrink(),
+                    items: ["Yes", "No"]
+                        .map((String value) => DropdownMenuItem<String>(
+                      value: value,
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          value,
+                          style: AppStyles.workSansTextStyle()
+                              .copyWith(fontSize: 14.sp),
+                        ),
+                      ),
+                    ))
+                        .toList(),
+                    onChanged: (String? newValue) {
+                      controller.selectedEligibility.value = newValue!;
+                    },
+                  );
+                }),
+              ),
+              const SizedBox(
+                height: 52,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomButton(
+                    text: "Cancel",
+                    height: 40,
+                    onTap: () {
+                      Get.back();
+                    },
+                    width: 75,
+                    textColor: kBlackColor,
+                    color: kWhiteColor,
+                    borderColor: kFieldBorderColor1,
+                    fontSize: 14.sp,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -309,7 +598,14 @@ class BeverageScreen extends GetView<BeverageController> {
                                         ],
                                       ),
                                     ),
-                                    CustomButton(text: kAddBeverage, height: 56, onTap: (){},width: 171,)
+                                    CustomButton(text: kAddBeverage, height: 56, onTap: (){
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return addBeverageDialogue(context);
+                                        },
+                                      );
+                                    },width: 171,)
                                   ],
                                 ),
                                 const SizedBox(
@@ -455,9 +751,14 @@ class BeverageScreen extends GetView<BeverageController> {
                                             vertical: 8, horizontal: 12),
                                         decoration: BoxDecoration(
                                           color: controller.isBackButtonDisabled
-                                              ? kBackGroundColor
+                                              ? kWhiteColor
                                               : kPrimaryColor,
                                           borderRadius: BorderRadius.circular(4),
+                                          border: Border.all(
+                                            color: controller.isBackButtonDisabled
+                                                ? kCreamColor
+                                                : kPrimaryColor,
+                                          )
                                         ),
                                         child: Row(
                                           crossAxisAlignment:
@@ -507,9 +808,14 @@ class BeverageScreen extends GetView<BeverageController> {
                                               decoration: BoxDecoration(
                                                 color: isSelected
                                                     ? kPrimaryColor
-                                                    : kBackGroundColor,
+                                                    : kWhiteColor,
                                                 borderRadius:
                                                 BorderRadius.circular(4),
+                                                border: Border.all(
+                                                  color: isSelected
+                                                      ? kPrimaryColor
+                                                      : kCreamColor,
+                                                ),
                                               ),
                                               child: Center(
                                                 child: Text(
@@ -538,9 +844,15 @@ class BeverageScreen extends GetView<BeverageController> {
                                             vertical: 8, horizontal: 12),
                                         decoration: BoxDecoration(
                                           color: controller.isNextButtonDisabled
-                                              ? kBackGroundColor
+                                              ? kWhiteColor
                                               : kPrimaryColor,
                                           borderRadius: BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: controller.isNextButtonDisabled
+                                                  ? kCreamColor
+                                                  : kPrimaryColor,
+                                            )
+
                                         ),
                                         child: Row(
                                           crossAxisAlignment:
@@ -652,8 +964,8 @@ class BeverageScreen extends GetView<BeverageController> {
                         },
                         child: SvgPicture.asset(
                           kDeleteIcon,
-                          height: 18,
-                          width: 18,
+                          height: 19.h,
+                          width: 19.w,
                         ),
                       ),
                     ),
@@ -669,8 +981,8 @@ class BeverageScreen extends GetView<BeverageController> {
                         },
                         child: SvgPicture.asset(
                           kEditIcon,
-                          height: 18,
-                          width: 18,
+                          height: 19.h,
+                          width: 19.w,
                         ),
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
@@ -253,6 +254,8 @@ class ChatScreen extends GetView<SupportController> {
                                 ),
                               ),
                             ),
+                            SvgPicture.asset(kSmilyIcon,height: 24,width: 24),
+                            SizedBox(width: 19),
                             GestureDetector(
                               onTap: () {
                                 controller.sendMessage(

@@ -11,11 +11,190 @@ import '../../../utils/common_code.dart';
 import '../../side_menu/controller/menu_controller.dart';
 import '../../side_menu/side_menu.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/message_dialog.dart';
 import '../../widgets/notifiction_panel.dart';
 import 'controller/support_controller.dart';
 
 class CustomerSupportScreen extends GetView<SupportController> {
   const CustomerSupportScreen({super.key});
+
+
+  Widget allChatsDialogue(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      insetPadding: const EdgeInsets.symmetric(vertical: 30,horizontal: 100),
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: AppStyles().chatPadding,
+              child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Users",
+                          style: AppStyles.poppinsTextStyle().copyWith(
+                              fontSize: 20.sp, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          "34",
+                          style: AppStyles.poppinsTextStyle().copyWith(
+                              fontSize: 20.sp, fontWeight: FontWeight.w500,color: kBarChartTextColor),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15,),
+                    SizedBox(
+                      height: 41,
+                      child: TextField(
+                        style: AppStyles.workSansTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400),
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          fillColor: kWhiteColor,
+                          hintStyle: AppStyles.workSansTextStyle().copyWith(fontSize: 14,fontWeight: FontWeight.w400,color: ksuffixColor.withOpacity(0.2)),
+                          contentPadding: const EdgeInsets.only(top: 8),
+                          prefixIcon: Icon(
+                            Icons.search_sharp,
+                            size: 24,
+                            color: kBlackColor,
+                          ),
+                          focusColor: kWhiteColor,
+                          hoverColor: kWhiteColor,
+                        ),
+                      ),
+                    ),
+                  ]
+              ),
+            ),
+            SizedBox(height: 12.h,),
+            ListView.builder(
+              padding: const EdgeInsets.all(0),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.chatList.length,
+              itemBuilder: (context, index) {
+                final chat = controller.chatList[index];
+                return GestureDetector(
+                  onTap: (){
+                    Get.back();
+                   showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return MessageScreenDialogue();
+                      },
+                    );
+                  },
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border(bottom: BorderSide(color: kBorderColor3))
+                      ),
+                      child: Padding(
+                        padding: AppStyles().chatPadding,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 48,
+                                width: 48,
+                                child: Stack(
+                                    children: [
+                                      Container(
+                                          height: 48,
+                                          width: 48,
+                                          decoration: BoxDecoration(
+                                            borderRadius: AppStyles.customBorder8,
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: AppStyles.customBorder8,
+                                            child: Image.asset(
+                                              chat["image"].toString(),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        child: Container(
+                                            height: 12,
+                                            width: 12,
+                                            decoration: BoxDecoration(
+                                                borderRadius: AppStyles.searchFieldBorder20,
+                                                color: chat["status"] == 'online' ? kLightGreenColor : kPrimaryColor,
+                                                border: Border.all(color: kWhiteColor,width: 1.w)
+                                            )
+                                        ),
+                                      )
+                                    ]
+                                )
+                            ),
+                            SizedBox(width: 17.w),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(chat["name"].toString(),style: AppStyles.interTextStyle(),),
+                                  SizedBox(height: 10.h,),
+                                  SizedBox(
+                                      width: 239.w,
+                                      child: Text(chat["latestMessage"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kBorderColor2),maxLines: 1,overflow: TextOverflow.ellipsis,)),
+                                ]
+                            ),
+                            const Spacer(),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    chat["timeline"] == 'new' ?Container(
+                                        width: 40,
+                                        height: 19,
+                                        decoration: BoxDecoration(
+                                          borderRadius: AppStyles.customBorder8,
+                                          color: kPrimaryColor,
+
+                                        ),
+                                        child:  Center(child: Text("New",style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
+
+                                    ) : SizedBox(),
+                                    SizedBox(width: chat["timeline"] == 'new' ? 12.w : 0),
+                                    Container(
+                                        width: 19,
+                                        height: 19,
+                                        decoration: BoxDecoration(
+                                          borderRadius: AppStyles.customBorderAll100,
+                                          color: kPrimaryColor,
+
+                                        ),
+                                        child:  Center(child: Text(chat["unreadCount"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 14.sp,fontWeight: FontWeight.w400,color: kWhiteColor),))
+
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 9.h),
+                                Text(chat["time"].toString(),style: AppStyles.interTextStyle().copyWith(fontSize: 12.sp,fontWeight: FontWeight.w400,color: kBorderColor2))
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },)
+          ],
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +220,6 @@ class CustomerSupportScreen extends GetView<SupportController> {
                           Padding(
                             padding: AppStyles().horizontal,
                             child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   kCustomerRequests,
@@ -176,49 +354,12 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                                   color: kBlackColor4),
                                             ),
                                           ),
-                                          PopupMenuButton<String>(
-                                            color: kWhiteColor,
-                                            position: PopupMenuPosition.under,
-                                            shape: OutlineInputBorder(
-                                                borderRadius: AppStyles.customBorder8,
-                                                borderSide: BorderSide.none),
-                                            icon: const Icon(
-                                                Icons.keyboard_arrow_down_outlined,
-                                                size: 16),
-                                            onSelected: (value) {
-                                              controller.selectedDate.value = value;
-                                            },
-                                            itemBuilder: (BuildContext context) => [
-                                              PopupMenuItem(
-                                                value: 'Last 7 Days',
-                                                child: Text('Last 7 Days',style: AppStyles.interTextStyle()
-                                                    .copyWith(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400),),
-                                              ),
-                                              PopupMenuItem(
-                                                value: 'Last 2 Weeks',
-                                                child: Text('Last 2 Weeks',style: AppStyles.interTextStyle()
-                                                    .copyWith(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400),),
-                                              ),
-                                              PopupMenuItem(
-                                                value: 'Last 1 Month',
-                                                child: Text('Last 1 Month',style: AppStyles.interTextStyle()
-                                                    .copyWith(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400),),
-                                              ),
-                                              PopupMenuItem(
-                                                value: 'Last 3 Month',
-                                                child: Text('Last 3 Month',style: AppStyles.interTextStyle()
-                                                    .copyWith(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w400),),
-                                              ),
-                                            ],
-                                          ),
+                                          IconButton(onPressed: (){
+                                            controller.openCalendarDialog(context);
+                                          },
+                                              icon: const Icon(
+                                              Icons.keyboard_arrow_down_outlined,
+                                              size: 16)),
                                           Container(
                                             width: 1,
                                             color: kLightGreyColor,
@@ -305,9 +446,12 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                       ),
                                     ),
                                     CustomButton(text: kNewMessage, height: 56, onTap: (){
-                                      final menuController = Get.put(MenuControllers());
-                                      Get.toNamed(kChatScreenRoute);
-                                      menuController.onItemTapped(8);
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return allChatsDialogue(context);
+                                        },
+                                      );
                                     },width: 171,)
                                   ],
                                 ),
@@ -677,9 +821,12 @@ class CustomerSupportScreen extends GetView<SupportController> {
                                             final chat = controller.chatList[index];
                                           return GestureDetector(
                                             onTap: (){
-                                              final menuController = Get.put(MenuControllers());
-                                              Get.toNamed(kChatScreenRoute);
-                                              menuController.onItemTapped(8);
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return MessageScreenDialogue();
+                                                },
+                                              );
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -911,7 +1058,12 @@ class CustomerSupportScreen extends GetView<SupportController> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MessageScreenDialogue();
+                            },
+                          );
                         },
                         child: SvgPicture.asset(
                           kChatIcon,

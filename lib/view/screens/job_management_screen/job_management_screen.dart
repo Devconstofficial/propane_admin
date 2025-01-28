@@ -11,14 +11,15 @@ import '../../../utils/common_code.dart';
 import '../../side_menu/controller/menu_controller.dart';
 import '../../side_menu/side_menu.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/filter_btn.dart';
+import '../../widgets/custom_textField.dart';
+import '../../widgets/flag_dialog.dart';
 import '../../widgets/notifiction_panel.dart';
 import 'controller/job_management_controller.dart';
 
 class JobManagementScreen extends GetView<JobController> {
   const JobManagementScreen({super.key});
 
-  Widget statusUpdateDialogue(BuildContext context) {
+  Widget feeDialogue(BuildContext context,bool isBooking) {
     double width = MediaQuery.of(context).size.width;
 
     return Dialog(
@@ -27,7 +28,6 @@ class JobManagementScreen extends GetView<JobController> {
         borderRadius: AppStyles.customBorder8,
       ),
       child: SizedBox(
-        height: 252,
         width: 400,
         child: Padding(
           padding: AppStyles().paddingAll24,
@@ -53,60 +53,64 @@ class JobManagementScreen extends GetView<JobController> {
               const SizedBox(
                 height: 32,
               ),
-              Text(
-                "Update Status",
-                style: AppStyles.workSansTextStyle()
-                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isBooking == true ? kPricePerGallon : kPricePerMile,
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
               ),
               Container(
-                height: 40,
-                width: width,
-                decoration: BoxDecoration(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
                     color: kWhiteColor,
-                    borderRadius: AppStyles.customBorder8,
-                    border: Border.all(color: kBorderColor)),
-                child: Obx(() {
-                  return DropdownButton<String>(
-                    borderRadius: AppStyles.customBorder8,
-                    isExpanded: true,
-                    dropdownColor: kWhiteColor,
-                    focusColor:    kWhiteColor,
-                    value: controller.selectedCrimeType.value.isNotEmpty
-                        ? controller.selectedCrimeType.value
-                        : null,
-                    hint: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        kStatus,
-                        style: AppStyles.workSansTextStyle()
-                            .copyWith(fontSize: 14.sp, color: kHintColor),
-                      ),
-                    ),
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Icon(Icons.arrow_drop_down_outlined,
-                          size: 25, color: kBlackColor.withOpacity(0.4)),
-                    ),
-                    underline: const SizedBox.shrink(),
-                    items: ['Approved', 'Suspend', 'Ban']
-                        .map((String crime) => DropdownMenuItem<String>(
-                      value: crime,
-                      child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 12),
-                        child: Text(
-                          crime,
-                          style: AppStyles.workSansTextStyle()
-                              .copyWith(fontSize: 14.sp),
-                        ),
-                      ),
-                    ))
-                        .toList(),
-                    onChanged: (String? newValue) {
-                      controller.selectedCrimeType.value = newValue!;
-                    },
-                  );
-                }),
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: isBooking == true ? kPricePerGallon : kPricePerMile,
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    kSpecifyRegion,
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: MyCustomTextField(
+                    hintText: kSpecifyRegion,
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
               ),
               const SizedBox(
                 height: 52,
@@ -123,11 +127,11 @@ class JobManagementScreen extends GetView<JobController> {
                     width: 75,
                     textColor: kBlackColor,
                     color: kWhiteColor,
-                    borderColor: kFieldBorderColor,
+                    borderColor: kFieldBorderColor1,
                     fontSize: 14.sp,
                   ),
                   CustomButton(
-                    text: "Update Now",
+                    text: isBooking == true ? "Activate" : "Update Now",
                     height: 40,
                     onTap: () {},
                     width: 110,
@@ -518,13 +522,28 @@ class JobManagementScreen extends GetView<JobController> {
                                         spacing: 18,
                                         children: [
                                           CustomButton(text: kUrgentPrice, height: 56, onTap: (){
-
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return feeDialogue(context, false);
+                                              },
+                                            );
                                           },width: 161.w,fontSize: 16.sp,),
                                           CustomButton(text: kBookingPrice, height: 56, onTap: (){
-
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return feeDialogue(context, false);
+                                              },
+                                            );
                                           },width: 171.w,fontSize: 16.sp,),
                                           CustomButton(text: kUltraUrgent, height: 56, onTap: (){
-
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return feeDialogue(context, true);
+                                              },
+                                            );
                                           },width: 161.w,fontSize: 16.sp,),
                                         ],
                                       )
@@ -918,7 +937,14 @@ class JobManagementScreen extends GetView<JobController> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return FlagDialog(
+                                onSubmit: () {},
+                              );
+                            },
+                          );
                         },
                         child: SvgPicture.asset(
                           kFlagIcon,

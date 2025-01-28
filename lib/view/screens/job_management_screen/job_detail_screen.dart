@@ -178,39 +178,55 @@ class JobDetailScreen extends GetView<JobController> {
                                 ],
                               ),
                               SizedBox(height: 85.h,),
-                              Container(
-                                height: 80,
-                                color: kWhiteColor,
-                                child: Stepper(
-                                  type: StepperType.horizontal,
-                                  elevation: 0,
-                                  currentStep: controller.currentStep.value,
-                                  onStepTapped: (step) => controller.goToStep(step),
-                                  onStepContinue: controller.nextStep,
-                                  onStepCancel: controller.previousStep,
-                                  steps: List.generate(5, (index) {
-                                    return Step(
-                                      title: Text(
-                                        'Step ${index + 1}',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                          color: index == controller.currentStep.value
-                                              ? kPrimaryColor
-                                              : Colors.grey,
-                                        ),
-                                      ),
-                                      content: const SizedBox.shrink(),
-                                      isActive: index <= controller.currentStep.value,
-                                      state: index < controller.currentStep.value
-                                          ? StepState.complete
-                                          : (index == controller.currentStep.value
-                                          ? StepState.editing
-                                          : StepState.indexed),
-                                    );
-                                  }),
-                                ),
+                          Container(
+                            height: 80,
+                            color: kWhiteColor,
+                            child: Theme(
+                              data: ThemeData(
+                                  colorScheme: const ColorScheme.light(
+                                      primary: kPrimaryColor
+                                  )
                               ),
+                              child: Stepper(
+                                type: StepperType.horizontal,
+                                elevation: 0,
+                                currentStep: controller.currentStep.value,
+                                onStepTapped: (step) => controller.goToStep(step),
+                                onStepContinue: controller.nextStep,
+                                onStepCancel: controller.previousStep,
+                                steps: [
+                                  'Accepted',
+                                  'Picked Up',
+                                  'New Driver Assigned',
+                                  'Heading Back',
+                                  'Delivered'
+                                ].asMap().entries.map((entry) {
+                                  int index = entry.key;
+                                  String title = entry.value;
+
+                                  return Step(
+                                    title: Text(
+                                      title,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: index == controller.currentStep.value
+                                            ? kPrimaryColor
+                                            : Colors.grey,
+                                      ),
+                                    ),
+                                    content: const SizedBox.shrink(),
+                                    isActive: index <= controller.currentStep.value,
+                                    state: index < controller.currentStep.value
+                                        ? StepState.complete
+                                        : (index == controller.currentStep.value
+                                        ? StepState.editing
+                                        : StepState.indexed),
+                                  );
+                                }).toList(),
+                              )
+                            ),
+                          ),
                               SizedBox(height: 44.h,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -289,7 +305,7 @@ class JobDetailScreen extends GetView<JobController> {
                               ),
                               const SizedBox(height: 8,),
                               Center(child: CustomButton(text: "BACK", height: 40, onTap: (){
-                                Get.close(1);
+                                Get.back();
                               },width: 71,borderColor: kFieldBorderColor,color: kWhiteColor,textColor: kBlackColor,fontSize: 14,)),
                               SizedBox(height: 25.h,),
                             ],

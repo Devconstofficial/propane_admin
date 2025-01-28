@@ -38,6 +38,8 @@ String kBeveragesIcon = "$basePathIcons/beverages.svg";
 String kFlagIcon = "$basePathIcons/flag.svg";
 String kMessageIcon = "$basePathIcons/message.svg";
 String kStarIcon = "$basePathIcons/star.svg";
+String kCameraIcon = "$basePathIcons/camera.png";
+String kSmilyIcon = "$basePathIcons/smilyIcon.svg";
 
 
 /// IMAGES
@@ -53,3 +55,6 @@ String kImage3 = "$basePath/image3.png";
 String kUserLogo = "$basePath/userLogo.png";
 String kLoginBackground = "$basePath/login_background.jpg";
 String kLoginBackground1 = "$basePath/login_backgound1.svg";
+String kRecieptImage = "$basePath/reciept.jpg";
+String kFlagImage = "$basePath/flag.svg";
+String kTankImage = "$basePath/tankImage.png";

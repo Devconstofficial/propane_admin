@@ -1,8 +1,17 @@
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PromotionsController extends GetxController{
   var selectedIndex = 0.obs;
   final RxInt currentFTDeliveryPage = 1.obs;
+  var isSwitchOn = false.obs;
+
+  void toggleSwitch(bool value) {
+    isSwitchOn.value = value;
+  }
+
   final List<Map<String, dynamic>> fTimeDeliveryList = [
     {"id": "0001", "name": "Alex", "location": "NYC", "status": "Active", "isSwitchOn": true,},
     {"id": "0002", "name": "Alex", "location": "NYC", "status": "Active", "isSwitchOn": true,},
@@ -83,6 +92,15 @@ class PromotionsController extends GetxController{
     {"cName" : "Apology20", "amount" : "20", "name": "John", "expDate": "2024-11-25", 'reason' : 'Delivery delay issue' , "status": "active"},
     ];
 
+  Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
+
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      selectedImage.value = await image.readAsBytes();
+    }
+  }
 
   final int itemsPerPage = 3;
 

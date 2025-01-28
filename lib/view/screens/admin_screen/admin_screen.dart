@@ -11,11 +11,14 @@ import '../../../utils/common_code.dart';
 import '../../side_menu/controller/menu_controller.dart';
 import '../../side_menu/side_menu.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_textField.dart';
+import '../../widgets/message_dialog.dart';
 import '../../widgets/notifiction_panel.dart';
 import 'controller/admin_controller.dart';
 
 class AdminScreen extends GetView<AdminController> {
   const AdminScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -452,9 +455,15 @@ class AdminScreen extends GetView<AdminController> {
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                       color: controller.isBackButtonDisabled
-                                          ? kBackGroundColor
+                                          ? kWhiteColor
                                           : kPrimaryColor,
                                       borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: controller.isBackButtonDisabled
+                                              ? kCreamColor
+                                              : kPrimaryColor,
+                                        )
+
                                     ),
                                     child: Row(
                                       crossAxisAlignment:
@@ -504,9 +513,14 @@ class AdminScreen extends GetView<AdminController> {
                                           decoration: BoxDecoration(
                                             color: isSelected
                                                 ? kPrimaryColor
-                                                : kBackGroundColor,
+                                                : kWhiteColor,
                                             borderRadius:
-                                                BorderRadius.circular(4),
+                                            BorderRadius.circular(4),
+                                            border: Border.all(
+                                              color: isSelected
+                                                  ? kPrimaryColor
+                                                  : kCreamColor,
+                                            ),
                                           ),
                                           child: Center(
                                             child: Text(
@@ -535,9 +549,14 @@ class AdminScreen extends GetView<AdminController> {
                                         vertical: 8, horizontal: 12),
                                     decoration: BoxDecoration(
                                       color: controller.isNextButtonDisabled
-                                          ? kBackGroundColor
+                                          ? kWhiteColor
                                           : kPrimaryColor,
                                       borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: controller.isNextButtonDisabled
+                                              ? kCreamColor
+                                              : kPrimaryColor,
+                                        )
                                     ),
                                     child: Row(
                                       crossAxisAlignment:
@@ -648,8 +667,8 @@ class AdminScreen extends GetView<AdminController> {
                         },
                         child: SvgPicture.asset(
                           kDeleteIcon,
-                          height: 18,
-                          width: 18,
+                          height: 19.h,
+                          width: 19.w,
                         ),
                       ),
                     ),
@@ -661,12 +680,17 @@ class AdminScreen extends GetView<AdminController> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return MessageScreenDialogue();
+                            },
+                          );
                         },
                         child: SvgPicture.asset(
                           kChatIcon,
-                          height: 18,
-                          width: 18,
+                          height: 19.h,
+                          width: 19.w,
                         ),
                       ),
                     ),

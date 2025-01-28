@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:typed_data';
+
 
 class BeverageController extends GetxController {
   var selectedPrice = ''.obs;
@@ -8,9 +11,21 @@ class BeverageController extends GetxController {
   RxList notifications = [].obs;
   RxList activities = [].obs;
   var isNotificationVisible = false.obs;
+  var selectedRegion = ''.obs;
+  var selectedEligibility = ''.obs;
+
 
   var isFormValid = false.obs;
 
+  Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
+
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      selectedImage.value = await image.readAsBytes();
+    }
+  }
 
   void toggleNotificationVisibility() {
     isNotificationVisible.value = !isNotificationVisible.value;

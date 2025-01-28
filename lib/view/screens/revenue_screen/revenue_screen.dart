@@ -11,6 +11,7 @@ import '../../../utils/common_code.dart';
 import '../../side_menu/controller/menu_controller.dart';
 import '../../side_menu/side_menu.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/custom_textField.dart';
 import '../../widgets/notifiction_panel.dart';
 import 'controller/revenue_controller.dart';
 
@@ -18,6 +19,445 @@ class RevenueScreen extends GetView<RevenueController> {
   RevenueScreen({super.key});
 
   final menuController = Get.put(MenuControllers());
+
+  Widget  transFeeDialogue(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset(
+                      kCrossIcon,
+                      height: 16,
+                      width: 16,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    kTransactionFee,
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "Fee % + 11 cents",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 52,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton(
+                    text: "Cancel",
+                    height: 40,
+                    onTap: () {
+                      Get.back();
+                    },
+                    width: 75,
+                    textColor: kBlackColor,
+                    color: kWhiteColor,
+                    borderColor: kFieldBorderColor1,
+                    fontSize: 14.sp,
+                  ),
+                  CustomButton(
+                    text: "Update Now",
+                    height: 40,
+                    onTap: () {},
+                    width: 110,
+                    color: kPrimaryColor,
+                    fontSize: 14.sp,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget platformFeeDialogue(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SvgPicture.asset(
+                      kCrossIcon,
+                      height: 16,
+                      width: 16,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    kPlatformFee,
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "*",
+                    style: AppStyles.workSansTextStyle()
+                        .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500,color: kPrimaryColor),
+                  ),
+                ],
+              ),
+              Container(
+                  height: 40,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: AppStyles.customBorder8,),
+                  child: const MyCustomTextField(
+                    hintText: "Fee Amount",
+                    borderColor: kFieldBorderColor,
+                    fillColor: kWhiteColor,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                  )
+              ),
+              const SizedBox(
+                height: 52,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton(
+                    text: "Cancel",
+                    height: 40,
+                    onTap: () {
+                      Get.back();
+                    },
+                    width: 75,
+                    textColor: kBlackColor,
+                    color: kWhiteColor,
+                    borderColor: kFieldBorderColor1,
+                    fontSize: 14.sp,
+                  ),
+                  CustomButton(
+                    text: "Update Now",
+                    height: 40,
+                    onTap: () {},
+                    width: 110,
+                    color: kPrimaryColor,
+                    fontSize: 14.sp,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget viewDetailDialogue(BuildContext context,bool driverPayout, bool tipsDetail) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Dialog(
+      backgroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppStyles.customBorder8,
+      ),
+      child: SizedBox(
+        width: 400,
+        child: Padding(
+          padding: AppStyles().paddingAll24,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: SvgPicture.asset(
+                        kCrossIcon,
+                        height: 16,
+                        width: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Job ID (Type)",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                              height: 40,
+                              width: width,
+                              decoration: BoxDecoration(
+                                color: kWhiteColor,
+                                borderRadius: AppStyles.customBorder8,),
+                              child: const MyCustomTextField(
+                                hintText: "Job ID (Type)",
+                                borderColor: kFieldBorderColor,
+                                fillColor: kWhiteColor,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                              )
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 18),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Tank Size",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                              height: 40,
+                              width: width,
+                              decoration: BoxDecoration(
+                                  color: kWhiteColor,
+                                  borderRadius: AppStyles.customBorder8),
+                              child: const MyCustomTextField(
+                                hintText: "Tank Size",
+                                borderColor: kFieldBorderColor,
+                                fillColor: kWhiteColor,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                              )
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Pickup Location",
+                  style: AppStyles.workSansTextStyle()
+                      .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                ),
+                Container(
+                    height: 40,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: kWhiteColor,
+                      borderRadius: AppStyles.customBorder8,),
+                    child: const MyCustomTextField(
+                      hintText: "Pickup Location",
+                      borderColor: kFieldBorderColor,
+                      fillColor: kWhiteColor,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                    )
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  "Delivery Location",
+                  style: AppStyles.workSansTextStyle()
+                      .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                ),
+                Container(
+                    height: 40,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: kWhiteColor,
+                      borderRadius: AppStyles.customBorder8,),
+                    child: const MyCustomTextField(
+                      hintText: "Delivery Location",
+                      borderColor: kFieldBorderColor,
+                      fillColor: kWhiteColor,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                    )
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                driverPayout == true ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Payout Amount",
+                      style: AppStyles.workSansTextStyle()
+                          .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                    ),
+                    Container(
+                        height: 40,
+                        width: width,
+                        decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: AppStyles.customBorder8,),
+                        child: const MyCustomTextField(
+                          hintText: "\$45",
+                          borderColor: kFieldBorderColor,
+                          fillColor: kWhiteColor,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                        )
+                    ),
+                  ],
+                ):
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Delivery Charges",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                              height: 40,
+                              width: width,
+                              decoration: BoxDecoration(
+                                color: kWhiteColor,
+                                borderRadius: AppStyles.customBorder8,),
+                              child: const MyCustomTextField(
+                                hintText: "\$111",
+                                borderColor: kFieldBorderColor,
+                                fillColor: kWhiteColor,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                              )
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 18),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            tipsDetail == true ? "Tip" : "Platform Commission",
+                            style: AppStyles.workSansTextStyle()
+                                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                          ),
+                          Container(
+                              height: 40,
+                              width: width,
+                              decoration: BoxDecoration(
+                                color: kWhiteColor,
+                                borderRadius: AppStyles.customBorder8,),
+                              child: const MyCustomTextField(
+                                hintText: "\$45",
+                                borderColor: kFieldBorderColor,
+                                fillColor: kWhiteColor,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                              )
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Row(
+                  mainAxisAlignment: driverPayout == true ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                      text: "Cancel",
+                      height: 40,
+                      onTap: () {
+                        Get.back();
+                      },
+                      width: 75,
+                      textColor: kBlackColor,
+                      color: kWhiteColor,
+                      borderColor: kFieldBorderColor1,
+                      fontSize: 14.sp,
+                    ),
+                    driverPayout == true ?
+                    CustomButton(text: "Approve", height: 40, onTap: (){},width: 84,color: kPrimaryColor,fontSize: 14,) :
+                    const SizedBox()
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -592,10 +1032,20 @@ class RevenueScreen extends GetView<RevenueController> {
                                       spacing: 18,
                                       children: [
                                         CustomButton(text: kTransactionFee, height: 56, onTap: (){
-
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return transFeeDialogue(context);
+                                            },
+                                          );
                                         },width: 189.w,fontSize: 16.sp,),
                                         CustomButton(text: kPlatformFee, height: 56, onTap: (){
-
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return platformFeeDialogue(context);
+                                            },
+                                          );
                                         },width: 218.w,fontSize: 16.sp,),
                                       ],
                                     ),
@@ -1998,20 +2448,30 @@ class RevenueScreen extends GetView<RevenueController> {
         ),
         DataCell(
           Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width / 11,
-              height: 34,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-              child: Center(
-                child: Text(
-                  "View",
-                  style: AppStyles.workSansTextStyle().copyWith(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: kWhiteColor),
+            child: InkWell(
+              onTap: (){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return viewDetailDialogue(context,false,false);
+                  },
+                );
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width / 11,
+                height: 34,
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                child: Center(
+                  child: Text(
+                    "View",
+                    style: AppStyles.workSansTextStyle().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: kWhiteColor),
+                  ),
                 ),
               ),
             ),
@@ -2068,20 +2528,30 @@ class RevenueScreen extends GetView<RevenueController> {
         ),
         DataCell(
           Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width / 11,
-              height: 34,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-              child: Center(
-                child: Text(
-                  "View",
-                  style: AppStyles.workSansTextStyle().copyWith(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: kWhiteColor),
+            child: InkWell(
+              onTap: (){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return viewDetailDialogue(context,true,false);
+                  },
+                );
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width / 11,
+                height: 34,
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                child: Center(
+                  child: Text(
+                    "View",
+                    style: AppStyles.workSansTextStyle().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: kWhiteColor),
+                  ),
                 ),
               ),
             ),
@@ -2138,20 +2608,30 @@ class RevenueScreen extends GetView<RevenueController> {
         ),
         DataCell(
           Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width / 11,
-              height: 34,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(5.r),
-              ),
-              child: Center(
-                child: Text(
-                  "View",
-                  style: AppStyles.workSansTextStyle().copyWith(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: kWhiteColor),
+            child: InkWell(
+              onTap: (){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return viewDetailDialogue(context,false,true);
+                  },
+                );
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width / 11,
+                height: 34,
+                decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(5.r),
+                ),
+                child: Center(
+                  child: Text(
+                    "View",
+                    style: AppStyles.workSansTextStyle().copyWith(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: kWhiteColor),
+                  ),
                 ),
               ),
             ),

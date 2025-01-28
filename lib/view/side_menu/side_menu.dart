@@ -33,7 +33,7 @@ class _SideMenuState extends State<SideMenu> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 330.h,
+              height: 310.h,
               child: DrawerHeader(
                 child: Column(
                   children: [
@@ -51,7 +51,6 @@ class _SideMenuState extends State<SideMenu> {
                     Text('Admin',style: AppStyles.workSansTextStyle().copyWith(fontSize: 20,fontWeight: FontWeight.w600),),
                     Text('Prime Leonard',style: AppStyles.workSansTextStyle().copyWith(fontSize: 12,fontWeight: FontWeight.w400,color: kGrey2),),
                     // SizedBox(height: 65.h,),
-
                   ],
                 ),
               ),

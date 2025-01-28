@@ -18,6 +18,8 @@ class DriverController extends GetxController {
   var selectedLocation = ''.obs;
   var isFreeDelivery = false.obs;
   var isPayCash = false.obs;
+  var selectedDriverStatus = ''.obs;
+
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();

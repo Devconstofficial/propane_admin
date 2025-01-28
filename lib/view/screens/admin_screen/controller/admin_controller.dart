@@ -8,6 +8,7 @@ class AdminController extends GetxController {
   RxList notifications = [].obs;
   RxList activities = [].obs;
   var isNotificationVisible = false.obs;
+
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();

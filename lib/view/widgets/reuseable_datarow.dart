@@ -16,6 +16,7 @@ class CustomDataRow {
   final int? index;
   final bool isSwitchOn;
   final bool? isSwitchButton;
+  final VoidCallback? onEdit;
   final bool? isCoupon;
   final Function(bool, int)? onSwitchChanged;
   final BuildContext context;
@@ -26,6 +27,7 @@ class CustomDataRow {
     required this.column3Text,
     required this.column4Text,
     this.column5Text,
+    this.onEdit,
     this.index,
     required this.isSwitchOn,
     this.isSwitchButton,
@@ -119,13 +121,11 @@ class CustomDataRow {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () {
-
-                        },
+                        onTap: onEdit,
                         child: SvgPicture.asset(
                           kEditIcon,
-                          height: 18,
-                          width: 18,
+                          height: 19.h,
+                          width: 19.w,
                         ),
                       ),
                     ),
@@ -148,8 +148,8 @@ class CustomDataRow {
                         },
                         child: SvgPicture.asset(
                           kDeleteIcon,
-                          height: 18,
-                          width: 18,
+                          height: 19.h,
+                          width: 19.w,
                         ),
                       ),
                     ),

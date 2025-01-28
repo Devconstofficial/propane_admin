@@ -1,11 +1,14 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
 
 class SupportController extends GetxController {
   var selectedTicketStatus = ''.obs;
   var selectedDate = ''.obs;
+  Rx<DateTime?> selectedCalenderDate = Rx<DateTime?>(null);
   RxList notifications = [].obs;
   RxList activities = [].obs;
   var isNotificationVisible = false.obs;
@@ -14,7 +17,66 @@ class SupportController extends GetxController {
   TextEditingController passController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
   TextEditingController roleController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
   final TextEditingController messageController = TextEditingController();
+
+  void openCalendarDialog(BuildContext context) async {
+    final config = CalendarDatePicker2Config(
+        calendarType: CalendarDatePicker2Type.single,
+        selectedDayHighlightColor: kOrangeColor,
+        disableModePicker: true,
+        lastMonthIcon: const Icon(
+          Icons.arrow_back_ios_new_outlined,
+          size: 15,
+          color: kPrimaryColor,
+        ),
+        nextMonthIcon: const Icon(
+          Icons.arrow_forward_ios_outlined,
+          size: 15,
+          color: kPrimaryColor,
+        ));
+
+    final List<DateTime?> result = await showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: kWhiteColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: SizedBox(
+            width: 400,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CalendarDatePicker2(
+                config: config,
+                value: selectedCalenderDate.value != null ? [selectedCalenderDate.value] : [],
+                onValueChanged: (dates) {
+                  if (dates.isNotEmpty) {
+                    Future.delayed(
+                      const Duration(seconds: 1),
+                          () {
+                            selectedCalenderDate.value = dates.first;
+                        String formattedDate = DateFormat('yyyy-MM-dd').format(dates.first!);
+                        selectedDate.value = formattedDate;
+                        Get.back();
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    if (result.isNotEmpty) {
+      selectedCalenderDate.value = result.first;
+      String formattedDate = DateFormat('yyyy-MM-dd').format(result.first!);
+      selectedDate.value = formattedDate;
+    }
+  }
 
   var isFormValid = false.obs;
 
@@ -52,7 +114,6 @@ class SupportController extends GetxController {
   void sendMessage(String text) {
     messages.add({'text': text, 'isUser': true});
   }
-
 
   void toggleNotificationVisibility() {
     isNotificationVisible.value = !isNotificationVisible.value;
